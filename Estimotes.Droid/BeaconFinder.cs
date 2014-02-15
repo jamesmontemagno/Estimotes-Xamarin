@@ -8,12 +8,8 @@ namespace Estimotes.Droid
 {
     class BeaconFinder : Java.Lang.Object,  BeaconManager.IServiceReadyCallback
     {
-        public static readonly int REQUEST_ENABLE_BLUETOOTH = 12344321;
-        static readonly String ESTIMOTE_BEACON_PROXIMITY_UUID = "B9407F30-F5F8-466E-AFF9-25556B57FE6D";
-        static readonly String ESTIMOTE_IOS_PROXIMITY_UUID = "8492E75F-4FD6-469D-B132-043FE94921D8";
-        static readonly Region ALL_ESTIMOTE_BEACONS_REGION = new Region("rid", ESTIMOTE_BEACON_PROXIMITY_UUID, null, null);
+        public static readonly Region ALL_ESTIMOTE_BEACONS_REGION = new Region("rid", EstimoteValues.ESTIMOTE_BEACON_PROXIMITY_UUID, null, null);
         readonly BeaconManager _beaconManager;
-
         public EventHandler<BeaconsFoundEventArgs> BeaconsFound = delegate
         {
         };
@@ -29,21 +25,20 @@ namespace Estimotes.Droid
             _beaconManager = new BeaconManager(context);
             if (!_beaconManager.HasBluetooth)
             {
-                throw new Exception("The device does not have have Bluetooth LE!");
+                throw new Exception("The device does not have have Bluetooth!");
             }
 
             _beaconManager.Ranging += HandleRanging;
-
         }
 
         void HandleRanging(object sender, BeaconManager.RangingEventArgs e)
         {
             var filteredBeacons = new List<Beacon>();
-            foreach (var item in e.P1)
+            foreach (var item in e.Beacons)
             {
                 var uuid = item.ProximityUUID;
-                if (uuid.Equals(ESTIMOTE_BEACON_PROXIMITY_UUID, StringComparison.OrdinalIgnoreCase) ||
-                    uuid.Equals(ESTIMOTE_IOS_PROXIMITY_UUID, StringComparison.OrdinalIgnoreCase))
+                if (uuid.Equals(EstimoteValues.ESTIMOTE_BEACON_PROXIMITY_UUID, StringComparison.OrdinalIgnoreCase) ||
+                    uuid.Equals(EstimoteValues.ESTIMOTE_IOS_PROXIMITY_UUID, StringComparison.OrdinalIgnoreCase))
                 {
                     filteredBeacons.Add(item);
                 }

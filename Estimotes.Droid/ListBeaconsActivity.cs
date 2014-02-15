@@ -51,7 +51,7 @@ namespace Estimotes.Droid
             if (!_beaconFinder.IsBluetoothEnabled)
             {
                 var enableBtIntent = new Intent(BluetoothAdapter.ActionRequestEnable);
-                StartActivityForResult(enableBtIntent, BeaconFinder.REQUEST_ENABLE_BLUETOOTH);
+                StartActivityForResult(enableBtIntent, EstimoteValues.REQUEST_ENABLE_BLUETOOTH);
             }
             else
             {
@@ -82,7 +82,7 @@ namespace Estimotes.Droid
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
-            if (requestCode == BeaconFinder.REQUEST_ENABLE_BLUETOOTH)
+            if (requestCode == EstimoteValues.REQUEST_ENABLE_BLUETOOTH)
             {
                 if (resultCode == Result.Ok)
                 {
