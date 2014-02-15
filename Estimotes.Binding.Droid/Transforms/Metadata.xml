@@ -1,0 +1,9 @@
+﻿<metadata>
+	<attr path="/api/package[@name='com.estimote.sdk']" name="managedName">EstimoteSdk</attr>
+	<attr path="/api/package[@name='com.estimote.sdk.connection']" name="managedName">EstimoteSdk.Connection</attr>
+	<attr path="/api/package[@name='com.estimote.sdk.service']" name="managedName">EstimoteSdk.Service</attr>
+	<attr path="/api/package[@name='com.estimote.sdk.utils']" name="managedName">EstimoteSdk.Utils</attr>
+
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='BeaconManager.RangingListener']/method[@name='onBeaconsDiscovered']/parameter[@name='p0']" name="name">region</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='BeaconManager.RangingListener']/method[@name='onBeaconsDiscovered']/parameter[@name='p1']" name="name">beacons</attr>
+</metadata>
