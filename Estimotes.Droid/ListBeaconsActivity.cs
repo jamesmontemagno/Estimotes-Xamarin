@@ -1,29 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 using Android.App;
+using Android.Bluetooth;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using EstimoteSdk;
-using EstimoteSdk.Utils;
-using Android.Bluetooth;
 using Android.Util;
-using Android.Nfc;
+using Android.Widget;
+
+using EstimoteSdk;
 
 namespace Estimotes.Droid
 {
-    [Activity(Label = "ListBeaconsActivity")]			
+    [Activity(Label = "ListBeaconsActivity")]
     public class ListBeaconsActivity : Activity
     {
         static readonly String Tag = typeof(ListBeaconsActivity).FullName;
         static readonly String EXTRAS_TARGET_ACTIVITY = "extrasTargetActivity";
         static readonly String EXTRAS_BEACON = "extrasBeacon";
-        BeaconFinder _beaconFinder;
         LeDevicesListAdapter _adapter;
+        BeaconFinder _beaconFinder;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -33,16 +29,12 @@ namespace Estimotes.Droid
             ActionBar.SetHomeButtonEnabled(true);
 
             _beaconFinder = new BeaconFinder(this);
-            _beaconFinder.BeaconsFound += NewBeaconsFound; 
+            _beaconFinder.BeaconsFound += NewBeaconsFound;
 
             _adapter = new LeDevicesListAdapter(this);
             var list = FindViewById<ListView>(Resource.Id.device_list);
             list.Adapter = _adapter;
-            list.ItemClick += (sender, e) =>
-            {
-                var beacon = _adapter[e.Position];
-
-            };
+            list.ItemClick += (sender, e) => { var beacon = _adapter[e.Position]; };
         }
 
         protected override void OnStart()
@@ -99,7 +91,5 @@ namespace Estimotes.Droid
 
             base.OnActivityResult(requestCode, resultCode, data);
         }
-
     }
 }
-

@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using EstimoteSdk;
 
 namespace Estimotes.Droid
 {
-    class BeaconsFoundEventArgs: EventArgs
+    class BeaconsFoundEventArgs : EventArgs
     {
         public BeaconsFoundEventArgs(IEnumerable<Beacon> beacons)
         {

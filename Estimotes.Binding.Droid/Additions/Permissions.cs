@@ -1,5 +1,6 @@
-﻿using Android.App;
+﻿using Android;
+using Android.App;
 
-[assembly:UsesPermission (Android.Manifest.Permission.Bluetooth)]
-[assembly:UsesPermission (Android.Manifest.Permission.BluetoothAdmin)]
-[assembly:UsesFeature("android.hardware.bluetooth_le")]
+[assembly: UsesPermission(Manifest.Permission.Bluetooth)]
+[assembly: UsesPermission(Manifest.Permission.BluetoothAdmin)]
+[assembly: UsesFeature("android.hardware.bluetooth_le")]

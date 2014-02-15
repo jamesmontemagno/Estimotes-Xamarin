@@ -1,13 +1,17 @@
 ﻿using System.Collections.Generic;
+
 using Android.App;
 using Android.Content;
 using Android.Views;
 using Android.Widget;
+
 using EstimoteSdk;
+
+using Java.Lang;
 
 namespace Estimotes.Droid
 {
-    [Activity(Label = "LeDevicesListAdapter")]			
+    [Activity(Label = "LeDevicesListAdapter")]
     public class LeDevicesListAdapter : BaseAdapter<Beacon>
     {
         readonly List<Beacon> _beacons;
@@ -19,28 +23,16 @@ namespace Estimotes.Droid
             _beacons = new List<Beacon>();
         }
 
-        public override Beacon this [int index]
-        {
-            get
-            {
-                return _beacons[index];
-            }
-        }
+        public override Beacon this[int index] { get { return _beacons[index]; } }
 
-        public override int Count
-        {
-            get
-            {
-                return _beacons.Count;
-            }
-        }
+        public override int Count { get { return _beacons.Count; } }
 
         public override long GetItemId(int position)
         {
             return position;
         }
 
-        public override Java.Lang.Object GetItem(int position)
+        public override Object GetItem(int position)
         {
             return _beacons[position];
         }
@@ -55,10 +47,12 @@ namespace Estimotes.Droid
                 convertView.Tag = holder;
             }
             else
+            {
                 holder = (DeviceItemViewHolder)convertView.Tag;
+            }
 
             holder.Display(_beacons[position]);
-            return convertView; 
+            return convertView;
         }
 
         public void Update(IEnumerable<Beacon> estimoteBeacons)
@@ -69,4 +63,3 @@ namespace Estimotes.Droid
         }
     }
 }
-
