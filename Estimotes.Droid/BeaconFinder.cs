@@ -4,6 +4,7 @@ using System.Linq;
 using Android.Content;
 
 using EstimoteSdk;
+using EstimoteSdk.Utility;
 
 using Object = Java.Lang.Object;
 

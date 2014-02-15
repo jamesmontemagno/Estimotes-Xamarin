@@ -6,6 +6,7 @@ using Android.Bluetooth;
 using Android.Content;
 using Android.OS;
 using Android.Util;
+using Android.Views;
 using Android.Widget;
 
 using EstimoteSdk;
@@ -15,9 +16,9 @@ namespace Estimotes.Droid
     [Activity(Label = "ListBeaconsActivity")]
     public class ListBeaconsActivity : Activity
     {
+        public static readonly String EXTRAS_TARGET_ACTIVITY = "extrasTargetActivity";
+        public static readonly String EXTRAS_BEACON = "extrasBeacon";
         static readonly String Tag = typeof(ListBeaconsActivity).FullName;
-        static readonly String EXTRAS_TARGET_ACTIVITY = "extrasTargetActivity";
-        static readonly String EXTRAS_BEACON = "extrasBeacon";
         LeDevicesListAdapter _adapter;
         BeaconFinder _beaconFinder;
 
@@ -34,7 +35,30 @@ namespace Estimotes.Droid
             _adapter = new LeDevicesListAdapter(this);
             var list = FindViewById<ListView>(Resource.Id.device_list);
             list.Adapter = _adapter;
-            list.ItemClick += (sender, e) => { var beacon = _adapter[e.Position]; };
+            list.ItemClick += (sender, e) => { 
+                var beacon = _adapter[e.Position]; 
+                var intent = new Intent(this, typeof(DistanceBeaconActivity));
+                intent.PutExtra(EXTRAS_BEACON, beacon);
+                StartActivity(intent);
+            };
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.scan_menu, menu);
+            var refreshItem = menu.FindItem(Resource.Id.refresh);
+//            refreshItem.SetActionView(Resource.Layout.actionbar_indeterminate_progress);
+            return true;
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId == Android.Resource.Id.Home)
+            {
+                Finish();
+                return true;
+            }
+            return base.OnOptionsItemSelected(item);
         }
 
         protected override void OnStart()
