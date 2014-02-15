@@ -4,6 +4,11 @@
 	<attr path="/api/package[@name='com.estimote.sdk.service']" name="managedName">EstimoteSdk.Service</attr>
 	<attr path="/api/package[@name='com.estimote.sdk.utils']" name="managedName">EstimoteSdk.Utils</attr>
 
-	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='BeaconManager.RangingListener']/method[@name='onBeaconsDiscovered']/parameter[@name='p0']" name="name">region</attr>
-	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='BeaconManager.RangingListener']/method[@name='onBeaconsDiscovered']/parameter[@name='p1']" name="name">beacons</attr>
+	<!-- Parameter name fixups --> 
+	<attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.RangingListener']/method[@name='onBeaconsDiscovered']/parameter[@name='p0']" name="name">region</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.RangingListener']/method[@name='onBeaconsDiscovered']/parameter[@name='p1']" name="name">beacons</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.MonitoringListener']/method[@name='onEnteredRegion']/parameter[@name='p0']" name="name">region</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.MonitoringListener']/method[@name='onExitedRegion']/parameter[@name='p0']" name="name">region</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.ErrorListener']/method[@name='onError']/parameter[@name='p0']" name="name">errorCode</attr>
+
 </metadata>
