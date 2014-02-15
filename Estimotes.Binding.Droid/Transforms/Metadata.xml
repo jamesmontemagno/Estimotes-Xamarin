@@ -2,13 +2,16 @@
 	<attr path="/api/package[@name='com.estimote.sdk']" name="managedName">EstimoteSdk</attr>
 	<attr path="/api/package[@name='com.estimote.sdk.connection']" name="managedName">EstimoteSdk.Connection</attr>
 	<attr path="/api/package[@name='com.estimote.sdk.service']" name="managedName">EstimoteSdk.Service</attr>
-	<attr path="/api/package[@name='com.estimote.sdk.utils']" name="managedName">EstimoteSdk.Utils</attr>
-
-	<!-- Parameter name fixups --> 
+	<attr path="/api/package[@name='com.estimote.sdk.utils']" name="managedName">EstimoteSdk.Utility</attr>
+	<!-- Parameter name fixups -->
 	<attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.RangingListener']/method[@name='onBeaconsDiscovered']/parameter[@name='p0']" name="name">region</attr>
 	<attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.RangingListener']/method[@name='onBeaconsDiscovered']/parameter[@name='p1']" name="name">beacons</attr>
 	<attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.MonitoringListener']/method[@name='onEnteredRegion']/parameter[@name='p0']" name="name">region</attr>
 	<attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.MonitoringListener']/method[@name='onExitedRegion']/parameter[@name='p0']" name="name">region</attr>
 	<attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.ErrorListener']/method[@name='onError']/parameter[@name='p0']" name="name">errorCode</attr>
 
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='Region']/constructor[@name='Region' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.lang.Integer'] and parameter[4][@type='java.lang.Integer']]/parameter[@name='p0']" name="name">uniqueId</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='Region']/constructor[@name='Region' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.lang.Integer'] and parameter[4][@type='java.lang.Integer']]/parameter[@name='p1']" name="name">proximityUuid</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='Region']/constructor[@name='Region' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.lang.Integer'] and parameter[4][@type='java.lang.Integer']]/parameter[@name='p2']" name="name">major</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='Region']/constructor[@name='Region' and count(parameter)=4 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.String'] and parameter[3][@type='java.lang.Integer'] and parameter[4][@type='java.lang.Integer']]/parameter[@name='p3']" name="name">minor</attr>
 </metadata>
