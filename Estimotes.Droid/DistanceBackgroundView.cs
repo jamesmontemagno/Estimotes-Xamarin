@@ -32,7 +32,6 @@ namespace Estimotes.Droid
         void Initialize(Context context)
         {
             _drawable = context.Resources.GetDrawable(Resource.Drawable.bg_distance);
-
         }
 
         protected override void OnDraw(Android.Graphics.Canvas canvas)
