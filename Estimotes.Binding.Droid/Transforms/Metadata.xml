@@ -3,7 +3,6 @@
 	<attr path="/api/package[@name='com.estimote.sdk.connection']" name="managedName">EstimoteSdk.Connection</attr>
 	<attr path="/api/package[@name='com.estimote.sdk.service']" name="managedName">EstimoteSdk.Service</attr>
 	<attr path="/api/package[@name='com.estimote.sdk.utils']" name="managedName">EstimoteSdk.Utility</attr>
-	<!-- Parameter name fixups -->
 
 	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='Utils']/method[@name='computeAccuracy']/parameter[@name='p0']" name="name">beacon</attr>
 	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='Utils']/method[@name='computeProximity']/parameter[@name='p0']" name="name">beacon</attr>
@@ -14,6 +13,21 @@
 	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='Utils']/method[@name='beaconFromLeScan']/parameter[@name='p0']" name="name">bluetoothDevice</attr>
 	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='Utils']/method[@name='proximityFromAccuracy']/parameter[@name='p1']" name="name">accuracy</attr>
 	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='Utils']/method[@name='normalizeProximityUUID']/parameter[@name='p0']" name="name">uuid</attr>
+
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='Beacon']/constructor[@name='Beacon' and count(parameter)=1 and parameter[1][@type='android.content.Context']]/parameter[@name='p0']" name="name">context</attr>
+
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='BeaconManager']/method[@name='connect']/parameter[@name='p0']" name="name">callback</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='BeaconManager']/method[@name='setErrorListener']/parameter[@name='p0']" name="name">listener</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='BeaconManager']/method[@name='setMonitoringListener']/parameter[@name='p0']" name="name">listener</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='BeaconManager']/method[@name='setRangingListener']/parameter[@name='p0']" name="name">listener</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='BeaconManager']/method[@name='startMonitoring']/parameter[@name='p0']" name="name">region</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='BeaconManager']/method[@name='stopMonitoring']/parameter[@name='p0']" name="name">region</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='BeaconManager']/method[@name='startRanging']/parameter[@name='p0']" name="name">region</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='BeaconManager']/method[@name='stopRanging']/parameter[@name='p0']" name="name">region</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='BeaconManager']/method[@name='setBackgroundScanPeriod']/parameter[@name='p0']" name="name">scanPeriodMillis</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='BeaconManager']/method[@name='setBackgroundScanPeriod']/parameter[@name='p1']" name="name">waitTimeMillis</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='BeaconManager']/method[@name='setForegroundScanPeriod']/parameter[@name='p0']" name="name">scanPeriodMillis</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='BeaconManager']/method[@name='setForeGroundScanPeriod']/parameter[@name='p1']" name="name">waitTimeMillis</attr>
 
 	<attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.RangingListener']/method[@name='onBeaconsDiscovered']/parameter[@name='p0']" name="name">region</attr>
 	<attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.RangingListener']/method[@name='onBeaconsDiscovered']/parameter[@name='p1']" name="name">beacons</attr>

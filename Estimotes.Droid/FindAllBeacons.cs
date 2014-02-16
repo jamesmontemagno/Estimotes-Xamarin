@@ -8,7 +8,7 @@ using EstimoteSdk;
 namespace Estimotes.Droid
 {
 
-    class FindAllBeacons : FindBeacon, BeaconManager.IServiceReadyCallback
+    class FindAllBeacons : FindBeacon
     {
         public static readonly Region ALL_ESTIMOTE_BEACONS_REGION = new Region("rid", EstimoteValues.ESTIMOTE_BEACON_PROXIMITY_UUID, null, null);
         public EventHandler<BeaconsFoundEventArgs> BeaconsFound = delegate { };
@@ -19,12 +19,12 @@ namespace Estimotes.Droid
         }
 
 
-        public void OnServiceReady()
+        public  override void OnServiceReady()
         {
             BeaconManager.StartRanging(ALL_ESTIMOTE_BEACONS_REGION);
         }
 
-        void HandleRanging(object sender, BeaconManager.RangingEventArgs e)
+        protected virtual void HandleRanging(object sender, BeaconManager.RangingEventArgs e)
         {
             var filteredBeacons = (from item in e.Beacons
                                    let uuid = item.ProximityUUID

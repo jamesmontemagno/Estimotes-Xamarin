@@ -61,7 +61,7 @@ namespace Estimotes.Droid
         {
             _beacon = beacon;
             _region = region;
-            _beaconManager.Connect(this);
+            BeaconManager.Connect(this);
         }
 
         public void Stop()
