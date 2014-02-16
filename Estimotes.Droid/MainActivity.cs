@@ -59,7 +59,8 @@ namespace Estimotes.Droid
             list.ItemClick += (sender, e) =>
             {
                 _selectedBeacon= _adapter[e.Position];
-                _quickAction.Show((View) sender);
+                var imgView = e.View.FindViewWithTag("beacon_image") ;
+                _quickAction.Show(imgView);
             };
         }
 
