@@ -24,13 +24,14 @@ namespace Estimotes.Droid
             }
             return beacon;
         }
-
-        public static void StartNextActivity(this Activity activity, Type activityToStart, Beacon beacon)
+        public static void StartActivityForBeacon<TActivity>(this Activity activity,Beacon beacon) where TActivity:Activity
         {
-            var intent = new Intent(activity, activityToStart);
+            var type = typeof(TActivity);
+            var intent = new Intent(activity, type);
             intent.PutExtra(EXTRAS_BEACON, beacon);
             activity.StartActivity(intent);
         }
+
 
         public static Region CreateRegion(this Beacon beacon)
         {

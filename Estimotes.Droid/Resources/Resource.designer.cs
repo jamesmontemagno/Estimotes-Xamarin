@@ -136,10 +136,7 @@ namespace Estimotes.Droid
 			public const int ic_launcher = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
-			public const int menu_search = 2130837514;
-			
-			// aapt resource value: 0x7f02000b
-			public const int popup = 2130837515;
+			public const int popup = 2130837514;
 			
 			static Drawable()
 			{

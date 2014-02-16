@@ -1,7 +1,7 @@
 using Android.Graphics;
 using Android.Graphics.Drawables;
 
-namespace Estimotes.Droid.QuickAction
+namespace Estimotes.Droid
 {
     /// <summary>
     ///   Action item, displayed as menu with icon and text.

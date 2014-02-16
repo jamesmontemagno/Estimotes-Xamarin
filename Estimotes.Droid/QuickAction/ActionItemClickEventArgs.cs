@@ -1,6 +1,6 @@
 using System;
 
-namespace Estimotes.Droid.QuickAction
+namespace Estimotes.Droid
 {
     public class ActionItemClickEventArgs : EventArgs
     {

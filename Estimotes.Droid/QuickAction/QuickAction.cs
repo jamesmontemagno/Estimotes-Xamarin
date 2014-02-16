@@ -9,9 +9,8 @@ using Android.Views;
 using Android.Widget;
 
 using Object = Java.Lang.Object;
-using Estimotes.Droid;
 
-namespace Estimotes.Droid.QuickAction
+namespace Estimotes.Droid
 {
     public delegate void OnActionItemClickEventHandler(object sender, ActionItemClickEventArgs e);
 

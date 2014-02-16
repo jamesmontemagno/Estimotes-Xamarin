@@ -1,4 +1,4 @@
-namespace Estimotes.Droid.QuickAction
+namespace Estimotes.Droid
 {
     public enum QuickActionLayout
     {
