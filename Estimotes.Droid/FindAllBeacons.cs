@@ -4,40 +4,24 @@ using System.Linq;
 using Android.Content;
 
 using EstimoteSdk;
-using EstimoteSdk.Utility;
-
-using Object = Java.Lang.Object;
 
 namespace Estimotes.Droid
 {
-    class FindAllBeacons : Object, BeaconManager.IServiceReadyCallback
+
+    class FindAllBeacons : FindBeacon, BeaconManager.IServiceReadyCallback
     {
         public static readonly Region ALL_ESTIMOTE_BEACONS_REGION = new Region("rid", EstimoteValues.ESTIMOTE_BEACON_PROXIMITY_UUID, null, null);
-        readonly BeaconManager _beaconManager;
         public EventHandler<BeaconsFoundEventArgs> BeaconsFound = delegate { };
-        // Analysis disable once FieldCanBeMadeReadOnly.Local
-        object _locker = new object();
 
-        public FindAllBeacons(Context context)
+        public FindAllBeacons(Context context): base(context)
         {
-#if DEBUG
-            L.EnableDebugLogging(true);
-#endif
-
-            _beaconManager = new BeaconManager(context);
-            if (!_beaconManager.HasBluetooth)
-            {
-                throw new Exception("The device does not have have Bluetooth!");
-            }
-
-            _beaconManager.Ranging += HandleRanging;
+            BeaconManager.Ranging += HandleRanging;
         }
 
-        public bool IsBluetoothEnabled { get { return _beaconManager.IsBluetoothEnabled; } }
 
         public void OnServiceReady()
         {
-            _beaconManager.StartRanging(ALL_ESTIMOTE_BEACONS_REGION);
+            BeaconManager.StartRanging(ALL_ESTIMOTE_BEACONS_REGION);
         }
 
         void HandleRanging(object sender, BeaconManager.RangingEventArgs e)
@@ -53,17 +37,17 @@ namespace Estimotes.Droid
 
         public void FindBeacons()
         {
-            if (!_beaconManager.IsBluetoothEnabled)
+            if (!BeaconManager.IsBluetoothEnabled)
             {
                 throw new Exception("Bluetooth is not enabled.");
             }
-            _beaconManager.Connect(this);
+            BeaconManager.Connect(this);
         }
 
         public void Stop()
         {
-            _beaconManager.StopRanging(ALL_ESTIMOTE_BEACONS_REGION);
-            _beaconManager.Disconnect();
+            BeaconManager.StopRanging(ALL_ESTIMOTE_BEACONS_REGION);
+            BeaconManager.Disconnect();
         }
     }
 }

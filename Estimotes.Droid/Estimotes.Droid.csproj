@@ -61,6 +61,7 @@
     <Compile Include="DistanceBackgroundView.cs" />
     <Compile Include="BeaconFoundEventArgs.cs" />
     <Compile Include="FindSpecificBeacon.cs" />
+    <Compile Include="FindBeacon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
