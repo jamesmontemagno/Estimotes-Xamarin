@@ -1,5 +1,5 @@
-﻿using System;
-using Android.Content;
+﻿using Android.Content;
+using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Util;
 using Android.Views;
@@ -14,7 +14,6 @@ namespace Estimotes.Droid
             base(context)
         {
             Initialize(context);
-
         }
 
         public DistanceBackgroundView(Context context, IAttributeSet attrs) :
@@ -34,7 +33,7 @@ namespace Estimotes.Droid
             _drawable = context.Resources.GetDrawable(Resource.Drawable.bg_distance);
         }
 
-        protected override void OnDraw(Android.Graphics.Canvas canvas)
+        protected override void OnDraw(Canvas canvas)
         {
             base.OnDraw(canvas);
             var width = _drawable.IntrinsicWidth * canvas.Height / _drawable.IntrinsicHeight;
@@ -44,4 +43,3 @@ namespace Estimotes.Droid
         }
     }
 }
-

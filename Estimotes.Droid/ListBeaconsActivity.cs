@@ -20,7 +20,7 @@ namespace Estimotes.Droid
         public static readonly String EXTRAS_BEACON = "extrasBeacon";
         static readonly String Tag = typeof(ListBeaconsActivity).FullName;
         LeDevicesListAdapter _adapter;
-        BeaconFinder _beaconFinder;
+        FindAllBeacons _findAllBeacons;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -29,25 +29,25 @@ namespace Estimotes.Droid
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.SetHomeButtonEnabled(true);
 
-            _beaconFinder = new BeaconFinder(this);
-            _beaconFinder.BeaconsFound += NewBeaconsFound;
+            _findAllBeacons = new FindAllBeacons(this);
+            _findAllBeacons.BeaconsFound += NewBeaconsFound;
 
             _adapter = new LeDevicesListAdapter(this);
             var list = FindViewById<ListView>(Resource.Id.device_list);
             list.Adapter = _adapter;
-            list.ItemClick += (sender, e) => { 
-                var beacon = _adapter[e.Position]; 
-                var intent = new Intent(this, typeof(DistanceBeaconActivity));
-                intent.PutExtra(EXTRAS_BEACON, beacon);
-                StartActivity(intent);
-            };
+            list.ItemClick += (sender, e) =>{
+                                  var beacon = _adapter[e.Position];
+                                  var intent = new Intent(this, typeof(DistanceBeaconActivity));
+                                  intent.PutExtra(EXTRAS_BEACON, beacon);
+                                  StartActivity(intent);
+                              };
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.scan_menu, menu);
             var refreshItem = menu.FindItem(Resource.Id.refresh);
-//            refreshItem.SetActionView(Resource.Layout.actionbar_indeterminate_progress);
+            //            refreshItem.SetActionView(Resource.Layout.actionbar_indeterminate_progress);
             return true;
         }
 
@@ -64,14 +64,14 @@ namespace Estimotes.Droid
         protected override void OnStart()
         {
             base.OnStart();
-            if (!_beaconFinder.IsBluetoothEnabled)
+            if (!_findAllBeacons.IsBluetoothEnabled)
             {
                 var enableBtIntent = new Intent(BluetoothAdapter.ActionRequestEnable);
                 StartActivityForResult(enableBtIntent, EstimoteValues.REQUEST_ENABLE_BLUETOOTH);
             }
             else
             {
-                _beaconFinder.FindBeacons();
+                _findAllBeacons.FindBeacons();
             }
         }
 
@@ -79,14 +79,14 @@ namespace Estimotes.Droid
         {
             _adapter.Update(e.Beacons);
             ActionBar.Subtitle = string.Format("Found {0} beacons.", _adapter.Count);
-            _beaconFinder.Stop();
+            _findAllBeacons.Stop();
         }
 
         protected override void OnStop()
         {
             try
             {
-                _beaconFinder.Stop();
+                _findAllBeacons.Stop();
             }
             catch (RemoteException e)
             {
@@ -104,7 +104,7 @@ namespace Estimotes.Droid
                 {
                     ActionBar.Subtitle = "Scanning...";
                     _adapter.Update(new List<Beacon>(0));
-                    _beaconFinder.FindBeacons();
+                    _findAllBeacons.FindBeacons();
                 }
                 else
                 {

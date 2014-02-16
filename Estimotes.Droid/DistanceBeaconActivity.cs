@@ -1,49 +1,30 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.OS;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
+
 using EstimoteSdk;
+
+using Java.Lang;
+
+using Math = System.Math;
 
 namespace Estimotes.Droid
 {
-    [Activity(Label = "DistanceBeaconActivity")]			
+    [Activity(Label = "DistanceBeaconActivity")]
     public class DistanceBeaconActivity : Activity, ViewTreeObserver.IOnGlobalLayoutListener
     {
         static readonly string Tag = typeof(DistanceBeaconActivity).FullName;
         static readonly double RELATIVE_START_POS = 320.0 / 1110.0;
         static readonly double RELATIVE_STOP_POS = 885.0 / 1110.0;
-        SpecificBeaconFinder _beaconFinder;
         Beacon _beacon;
-        Region _region;
         View _dotView;
+        FindSpecificBeacon _findBeacon;
+        Region _region;
+        int _segmentLength = -1;
         View _sonar;
         int _startY = -1;
-        int _segmentLength = -1;
-
-        protected override void OnCreate(Bundle bundle)
-        {
-            base.OnCreate(bundle);
-
-            ActionBar.SetDisplayHomeAsUpEnabled(true);
-            SetContentView(Resource.Layout.distance_view);
-            _dotView = FindViewById(Resource.Id.dot);
-            _beacon = Intent.GetParcelableExtra(ListBeaconsActivity.EXTRAS_BEACON) as Beacon;
-            _beaconFinder = new SpecificBeaconFinder(this);
-
-            _beaconFinder.BeaconFound += (sender, e) =>  _dotView.Animate().TranslationY(ComputeDotPosY(e.FoundBeacon)).Start();
-
-
-            _sonar = FindViewById(Resource.Id.sonar);
-            _sonar.ViewTreeObserver.AddOnGlobalLayoutListener(this);
-
-            if (_beacon == null)
-            {
-                Toast.MakeText(this, "Beacon not found in intent extras.", ToastLength.Long).Show();
-                Finish();
-            }
-            _region = new Region("regionid", _beacon.ProximityUUID, new Java.Lang.Integer(_beacon.Major), new Java.Lang.Integer(_beacon.Minor));
-        }
 
         public void OnGlobalLayout()
         {
@@ -55,12 +36,66 @@ namespace Estimotes.Droid
             _dotView.TranslationY = ComputeDotPosY(_beacon);
         }
 
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId == Android.Resource.Id.Home)
+            {
+                Finish();
+                return true;
+            }
+            return base.OnOptionsItemSelected(item);
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            _findBeacon.LookForBeacon(_region, _beacon);
+        }
+
+        protected override void OnStop()
+        {
+            _findBeacon.Stop();
+            base.OnStop();
+        }
+
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
+
+            _beacon = Intent.GetParcelableExtra(ListBeaconsActivity.EXTRAS_BEACON) as Beacon;
+            if (_beacon == null)
+            {
+                Toast.MakeText(this, "Beacon not found in intent extras.", ToastLength.Long).Show();
+                Finish();
+            }
+
+            ActionBar.SetDisplayHomeAsUpEnabled(true);
+            SetContentView(Resource.Layout.distance_view);
+            _dotView = FindViewById(Resource.Id.dot);
+
+            _region = new Region("regionid", _beacon.ProximityUUID, new Integer(_beacon.Major), new Integer(_beacon.Minor));
+
+            _sonar = FindViewById(Resource.Id.sonar);
+            _sonar.ViewTreeObserver.AddOnGlobalLayoutListener(this);
+
+            _findBeacon = new FindSpecificBeacon(this);
+            _findBeacon.BeaconFound += delegate(object sender, BeaconFoundEventArgs e){
+                                           RunOnUiThread(() =>{
+                                                             Log.Debug(Tag, "Found the beacon!");
+                                                             if (_segmentLength == -1)
+                                                             {
+                                                                 return;
+                                                             }
+                                                             _dotView.Animate().TranslationY(ComputeDotPosY(e.FoundBeacon)).Start();
+                                                         });
+                                       };
+        }
+
         float ComputeDotPosY(Beacon foundBeacon)
         {
             // Put the dot at the end of the scale when it's further than 6m.
-            var distance = Math.Min(EstimoteSdk.Utils.ComputeAccuracy(foundBeacon), 6.0);
+            var distance = Math.Min(Utils.ComputeAccuracy(foundBeacon), 6.0);
             return _startY + (int)(_segmentLength * (distance / 6.0));
         }
     }
 }
-

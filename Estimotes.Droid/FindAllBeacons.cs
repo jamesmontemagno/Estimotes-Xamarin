@@ -10,7 +10,7 @@ using Object = Java.Lang.Object;
 
 namespace Estimotes.Droid
 {
-    class BeaconFinder : Object, BeaconManager.IServiceReadyCallback
+    class FindAllBeacons : Object, BeaconManager.IServiceReadyCallback
     {
         public static readonly Region ALL_ESTIMOTE_BEACONS_REGION = new Region("rid", EstimoteValues.ESTIMOTE_BEACON_PROXIMITY_UUID, null, null);
         readonly BeaconManager _beaconManager;
@@ -18,7 +18,7 @@ namespace Estimotes.Droid
         // Analysis disable once FieldCanBeMadeReadOnly.Local
         object _locker = new object();
 
-        public BeaconFinder(Context context)
+        public FindAllBeacons(Context context)
         {
 #if DEBUG
             L.EnableDebugLogging(true);

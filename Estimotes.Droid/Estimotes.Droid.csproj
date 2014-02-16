@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -55,12 +55,12 @@
     <Compile Include="LeDevicesListAdapter.cs" />
     <Compile Include="DeviceItemViewHolder.cs" />
     <Compile Include="ListBeaconsActivity.cs" />
-    <Compile Include="BeaconFinder.cs" />
+    <Compile Include="FindAllBeacons.cs" />
     <Compile Include="BeaconsFoundEventArgs.cs" />
     <Compile Include="DistanceBeaconActivity.cs" />
     <Compile Include="DistanceBackgroundView.cs" />
     <Compile Include="BeaconFoundEventArgs.cs" />
-    <Compile Include="SpecificBeaconFinder.cs" />
+    <Compile Include="FindSpecificBeacon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -86,14 +86,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Resources\drawable-xhdpi\" />
-    <Folder Include="Resources\menu\" />
-    <Folder Include="Resources\drawable-xxhdpi\" />
-    <Folder Include="Resources\drawable-mdpi\" />
-    <Folder Include="Resources\drawable-hdpi\" />
-    <Folder Include="Resources\drawable\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Estimotes.Binding.Droid\Estimotes.Droid.Binding.csproj">
       <Project>{C2098D47-D08C-487C-95D3-5853B678AEB2}</Project>
