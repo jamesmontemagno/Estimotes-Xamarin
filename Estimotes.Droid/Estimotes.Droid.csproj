@@ -63,6 +63,11 @@
     <Compile Include="NotifyDemoActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="ActivityHelpers.cs" />
+    <Compile Include="QuickAction\ActionItem.cs" />
+    <Compile Include="QuickAction\ActionItemClickEventArgs.cs" />
+    <Compile Include="QuickAction\QuickActionAnimationStyle.cs" />
+    <Compile Include="QuickAction\QuickActionLayout.cs" />
+    <Compile Include="QuickAction\QuickAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -70,7 +75,6 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\drawable-xhdpi\beacon_gray.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\bg_distance.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\dot.png" />
@@ -87,6 +91,34 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\beacon_blueberry.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\beacon_icy.png" />
+    <AndroidResource Include="Resources\anim\disappear.xml" />
+    <AndroidResource Include="Resources\anim\grow_from_bottom.xml" />
+    <AndroidResource Include="Resources\anim\grow_from_bottomleft_to_topright.xml" />
+    <AndroidResource Include="Resources\anim\grow_from_bottomright_to_topleft.xml" />
+    <AndroidResource Include="Resources\anim\grow_from_top.xml" />
+    <AndroidResource Include="Resources\anim\grow_from_topleft_to_bottomright.xml" />
+    <AndroidResource Include="Resources\anim\grow_from_topright_to_bottomleft.xml" />
+    <AndroidResource Include="Resources\anim\pump_bottom.xml" />
+    <AndroidResource Include="Resources\anim\pump_top.xml" />
+    <AndroidResource Include="Resources\anim\rail.xml" />
+    <AndroidResource Include="Resources\anim\shrink_from_bottom.xml" />
+    <AndroidResource Include="Resources\anim\shrink_from_bottomleft_to_topright.xml" />
+    <AndroidResource Include="Resources\anim\shrink_from_bottomright_to_topleft.xml" />
+    <AndroidResource Include="Resources\anim\shrink_from_top.xml" />
+    <AndroidResource Include="Resources\anim\shrink_from_topleft_to_bottomright.xml" />
+    <AndroidResource Include="Resources\anim\shrink_from_topright_to_bottomleft.xml" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\layout\action_item_horizontal.axml" />
+    <AndroidResource Include="Resources\layout\action_item_vertical.axml" />
+    <AndroidResource Include="Resources\layout\horiz_separator.axml" />
+    <AndroidResource Include="Resources\layout\popup_horizontal.axml" />
+    <AndroidResource Include="Resources\layout\popup_vertical.axml" />
+    <AndroidResource Include="Resources\drawable\action_item_btn.xml" />
+    <AndroidResource Include="Resources\drawable\action_item_selected.9.png" />
+    <AndroidResource Include="Resources\drawable\arrow_down.png" />
+    <AndroidResource Include="Resources\drawable\arrow_up.png" />
+    <AndroidResource Include="Resources\drawable\popup.9.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup />
@@ -95,5 +127,9 @@
       <Project>{C2098D47-D08C-487C-95D3-5853B678AEB2}</Project>
       <Name>Estimotes.Droid.Binding</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="QuickAction\" />
+    <Folder Include="Resources\anim\" />
   </ItemGroup>
 </Project>

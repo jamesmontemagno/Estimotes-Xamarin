@@ -28,6 +28,67 @@ namespace Estimotes.Droid
 		{
 		}
 		
+		public partial class Animation
+		{
+			
+			// aapt resource value: 0x7f040000
+			public const int disappear = 2130968576;
+			
+			// aapt resource value: 0x7f040001
+			public const int grow_from_bottom = 2130968577;
+			
+			// aapt resource value: 0x7f040002
+			public const int grow_from_bottomleft_to_topright = 2130968578;
+			
+			// aapt resource value: 0x7f040003
+			public const int grow_from_bottomright_to_topleft = 2130968579;
+			
+			// aapt resource value: 0x7f040004
+			public const int grow_from_top = 2130968580;
+			
+			// aapt resource value: 0x7f040005
+			public const int grow_from_topleft_to_bottomright = 2130968581;
+			
+			// aapt resource value: 0x7f040006
+			public const int grow_from_topright_to_bottomleft = 2130968582;
+			
+			// aapt resource value: 0x7f040007
+			public const int pump_bottom = 2130968583;
+			
+			// aapt resource value: 0x7f040008
+			public const int pump_top = 2130968584;
+			
+			// aapt resource value: 0x7f040009
+			public const int rail = 2130968585;
+			
+			// aapt resource value: 0x7f04000a
+			public const int shrink_from_bottom = 2130968586;
+			
+			// aapt resource value: 0x7f04000b
+			public const int shrink_from_bottomleft_to_topright = 2130968587;
+			
+			// aapt resource value: 0x7f04000c
+			public const int shrink_from_bottomright_to_topleft = 2130968588;
+			
+			// aapt resource value: 0x7f04000d
+			public const int shrink_from_top = 2130968589;
+			
+			// aapt resource value: 0x7f04000e
+			public const int shrink_from_topleft_to_bottomright = 2130968590;
+			
+			// aapt resource value: 0x7f04000f
+			public const int shrink_from_topright_to_bottomleft = 2130968591;
+			
+			static Animation()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Animation()
+			{
+			}
+		}
+		
 		public partial class Attribute
 		{
 			
@@ -45,22 +106,37 @@ namespace Estimotes.Droid
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int beacon_blueberry = 2130837504;
+			public const int action_item_btn = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int beacon_gray = 2130837505;
+			public const int action_item_selected = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int beacon_icy = 2130837506;
+			public const int arrow_down = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int bg_distance = 2130837507;
+			public const int arrow_up = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int dot = 2130837508;
+			public const int beacon_blueberry = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int ic_launcher = 2130837509;
+			public const int beacon_gray = 2130837509;
+			
+			// aapt resource value: 0x7f020006
+			public const int beacon_icy = 2130837510;
+			
+			// aapt resource value: 0x7f020007
+			public const int bg_distance = 2130837511;
+			
+			// aapt resource value: 0x7f020008
+			public const int dot = 2130837512;
+			
+			// aapt resource value: 0x7f020009
+			public const int ic_launcher = 2130837513;
+			
+			// aapt resource value: 0x7f02000a
+			public const int popup = 2130837514;
 			
 			static Drawable()
 			{
@@ -75,23 +151,41 @@ namespace Estimotes.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060003
-			public const int device_list = 2131099651;
+			// aapt resource value: 0x7f08000a
+			public const int arrow_down = 2131230730;
 			
-			// aapt resource value: 0x7f060002
-			public const int dot = 2131099650;
+			// aapt resource value: 0x7f080009
+			public const int arrow_up = 2131230729;
 			
-			// aapt resource value: 0x7f060005
-			public const int refresh = 2131099653;
+			// aapt resource value: 0x7f080005
+			public const int device_list = 2131230725;
 			
-			// aapt resource value: 0x7f060000
-			public const int root = 2131099648;
+			// aapt resource value: 0x7f080004
+			public const int dot = 2131230724;
 			
-			// aapt resource value: 0x7f060001
-			public const int sonar = 2131099649;
+			// aapt resource value: 0x7f080000
+			public const int iv_icon = 2131230720;
 			
-			// aapt resource value: 0x7f060004
-			public const int status = 2131099652;
+			// aapt resource value: 0x7f08000b
+			public const int refresh = 2131230731;
+			
+			// aapt resource value: 0x7f080002
+			public const int root = 2131230722;
+			
+			// aapt resource value: 0x7f080007
+			public const int scroller = 2131230727;
+			
+			// aapt resource value: 0x7f080003
+			public const int sonar = 2131230723;
+			
+			// aapt resource value: 0x7f080006
+			public const int status = 2131230726;
+			
+			// aapt resource value: 0x7f080008
+			public const int tracks = 2131230728;
+			
+			// aapt resource value: 0x7f080001
+			public const int tv_title = 2131230721;
 			
 			static Id()
 			{
@@ -107,19 +201,34 @@ namespace Estimotes.Droid
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int actionbar_indeterminate_progress = 2130903040;
+			public const int action_item_horizontal = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int device_item = 2130903041;
+			public const int action_item_vertical = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int distance_view = 2130903042;
+			public const int actionbar_indeterminate_progress = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int main = 2130903043;
+			public const int device_item = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int notify_demo = 2130903044;
+			public const int distance_view = 2130903044;
+			
+			// aapt resource value: 0x7f030005
+			public const int horiz_separator = 2130903045;
+			
+			// aapt resource value: 0x7f030006
+			public const int main = 2130903046;
+			
+			// aapt resource value: 0x7f030007
+			public const int notify_demo = 2130903047;
+			
+			// aapt resource value: 0x7f030008
+			public const int popup_horizontal = 2130903048;
+			
+			// aapt resource value: 0x7f030009
+			public const int popup_vertical = 2130903049;
 			
 			static Layout()
 			{
@@ -134,8 +243,8 @@ namespace Estimotes.Droid
 		public partial class Menu
 		{
 			
-			// aapt resource value: 0x7f050000
-			public const int scan_menu = 2131034112;
+			// aapt resource value: 0x7f070000
+			public const int scan_menu = 2131165184;
 			
 			static Menu()
 			{
@@ -150,8 +259,8 @@ namespace Estimotes.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f040000
-			public const int app_name = 2130968576;
+			// aapt resource value: 0x7f050000
+			public const int app_name = 2131034112;
 			
 			static String()
 			{
@@ -159,6 +268,52 @@ namespace Estimotes.Droid
 			}
 			
 			private String()
+			{
+			}
+		}
+		
+		public partial class Style
+		{
+			
+			// aapt resource value: 0x7f060000
+			public const int Animations = 2131099648;
+			
+			// aapt resource value: 0x7f060001
+			public const int Animations_PopDownMenu = 2131099649;
+			
+			// aapt resource value: 0x7f060002
+			public const int Animations_PopDownMenu_Center = 2131099650;
+			
+			// aapt resource value: 0x7f060003
+			public const int Animations_PopDownMenu_Left = 2131099651;
+			
+			// aapt resource value: 0x7f060005
+			public const int Animations_PopDownMenu_Reflect = 2131099653;
+			
+			// aapt resource value: 0x7f060004
+			public const int Animations_PopDownMenu_Right = 2131099652;
+			
+			// aapt resource value: 0x7f060006
+			public const int Animations_PopUpMenu = 2131099654;
+			
+			// aapt resource value: 0x7f060007
+			public const int Animations_PopUpMenu_Center = 2131099655;
+			
+			// aapt resource value: 0x7f060008
+			public const int Animations_PopUpMenu_Left = 2131099656;
+			
+			// aapt resource value: 0x7f06000a
+			public const int Animations_PopUpMenu_Reflect = 2131099658;
+			
+			// aapt resource value: 0x7f060009
+			public const int Animations_PopUpMenu_Right = 2131099657;
+			
+			static Style()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Style()
 			{
 			}
 		}
