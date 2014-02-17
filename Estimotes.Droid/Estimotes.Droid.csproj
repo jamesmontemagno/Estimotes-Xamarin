@@ -68,6 +68,7 @@
     <Compile Include="QuickAction\QuickActionAnimationStyle.cs" />
     <Compile Include="QuickAction\QuickActionLayout.cs" />
     <Compile Include="QuickAction\QuickAction.cs" />
+    <Compile Include="QuickAction\ActionItemBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

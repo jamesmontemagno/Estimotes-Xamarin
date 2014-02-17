@@ -43,11 +43,19 @@ namespace Estimotes.Droid
 
         void InitializeQuickAction()
         {
-            var distanceItem = new ActionItem(QUICKACTION_DISTANCEDEMO, "Distance Demo", Resources.GetDrawable(Android.Resource.Drawable.StatSysDataBluetooth));
-            var notifyItem = new ActionItem(QUICKACTION_NOTIFYDEMO, "Notify Demo", Resources.GetDrawable(Android.Resource.Drawable.StatNotifyError));
             _quickAction = new QuickAction(this, QuickActionLayout.Horizontal);
-            _quickAction.AddActionItem(distanceItem);
-            _quickAction.AddActionItem(notifyItem);
+            var builder = _quickAction.GetBuilder();
+
+            builder.SetItemId(QUICKACTION_NOTIFYDEMO)
+                .SetTitle("Distance Demo")
+                .SetIcon(Android.Resource.Drawable.StatSysDataBluetooth)
+                .AddToParent();
+
+            builder.SetItemId(QUICKACTION_NOTIFYDEMO)
+                .SetTitle("Notify Demo")
+                .SetIcon(Android.Resource.Drawable.StatNotifyError)
+                .AddToParent();
+            
             _quickAction.ActionItemClicked += HandleActionItemClicked;
         }
 
