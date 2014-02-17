@@ -8,7 +8,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-using Object = Java.Lang.Object;
+using JavaObject = Java.Lang.Object;
 
 namespace Estimotes.Droid
 {
@@ -16,7 +16,7 @@ namespace Estimotes.Droid
 
     public delegate void OnActionItemDismissedEventHandler(object sender, EventArgs e);
 
-    public class QuickAction : Object, PopupWindow.IOnDismissListener
+    public class QuickAction : JavaObject, PopupWindow.IOnDismissListener
     {
         readonly List<ActionItem> _actionItems = new List<ActionItem>();
         readonly Context _context;
@@ -55,6 +55,8 @@ namespace Estimotes.Droid
 
         public Drawable Background { get; set; }
 
+
+
         void PopupWindow.IOnDismissListener.OnDismiss()
         {
         }
@@ -92,57 +94,18 @@ namespace Estimotes.Droid
             SetContentView(_rootView);
         }
 
+        public ActionItemBuilder GetBuilder()
+        {
+            return new ActionItemBuilder(_context, this);
+        }
+
         public void AddActionItem(ActionItem item)
         {
-            View container;
             _actionItems.Add(item);
-            if (_orientation == QuickActionLayout.Horizontal)
-            {
-                container = _inflater.Inflate(Resource.Layout.action_item_horizontal, null);
-            }
-            else
-            {
-                container = _inflater.Inflate(Resource.Layout.action_item_vertical, null);
-            }
 
-            var img = container.FindViewById<ImageView>(Resource.Id.iv_icon);
-            if (item.Icon == null)
-            {
-                img.Visibility = ViewStates.Gone;
-            }
-            else
-            {
-                img.SetImageDrawable(item.Icon);
-            }
-
-            var text = container.FindViewById<TextView>(Resource.Id.tv_title);
-            if (string.IsNullOrWhiteSpace(item.Title))
-            {
-                text.Visibility = ViewStates.Gone;
-            }
-            else
-            {
-                text.Text = item.Title;
-            }
-
-            var pos = _childPos;
-            container.Click += (sender, e) =>{
-                                   if (ActionItemClicked != null)
-                                   {
-                                       var arg = new ActionItemClickEventArgs(this, pos);
-                                       ActionItemClicked(container, arg);
-                                   }
-
-                                   if (GetActionItem(pos).IsSticky)
-                                   {
-                                       return;
-                                   }
-                                   _didAction = true;
-                                   Dismiss();
-                               };
-
-            container.Focusable = true;
-            container.Clickable = true;
+            var container = CreateActionItemContainer();
+            DisplayIcon(container, item);
+            DisplayTitle(container, item);
 
             if (_orientation == QuickActionLayout.Horizontal && _childPos != 0)
             {
@@ -160,6 +123,64 @@ namespace Estimotes.Droid
 
             _childPos++;
             _insertPos++;
+        }
+
+        View CreateActionItemContainer()
+        {
+            View container;
+            if (_orientation == QuickActionLayout.Horizontal)
+            {
+                container = _inflater.Inflate(Resource.Layout.action_item_horizontal, null);
+            }
+            else
+            {
+                container = _inflater.Inflate(Resource.Layout.action_item_vertical, null);
+            }
+            container.Focusable = true;
+            container.Clickable = true;
+            var pos = _childPos;
+            container.Click += (sender, e) =>{
+                if (ActionItemClicked != null)
+                {
+                    var arg = new ActionItemClickEventArgs(this, pos);
+                    ActionItemClicked(container, arg);
+                }
+
+                if (GetActionItem(pos).IsSticky)
+                {
+                    return;
+                }
+                _didAction = true;
+                Dismiss();
+            };
+
+
+            return container;
+        }
+
+        void DisplayIcon(View container, ActionItem item)
+        {
+            var img = container.FindViewById<ImageView>(Resource.Id.iv_icon);
+            if (item.Icon == null)
+            {
+                img.Visibility = ViewStates.Gone;
+            }
+            else
+            {
+                img.SetImageDrawable(item.Icon);
+            }
+        }
+        void DisplayTitle(View container, ActionItem item)
+        {
+            var text = container.FindViewById<TextView>(Resource.Id.tv_title);
+            if (string.IsNullOrWhiteSpace(item.Title))
+            {
+                text.Visibility = ViewStates.Gone;
+            }
+            else
+            {
+                text.Text = item.Title;
+            }
         }
 
         Rect GetAnchorRectangle(View view)
