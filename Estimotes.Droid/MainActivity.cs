@@ -10,7 +10,6 @@ using Android.Views;
 using Android.Widget;
 
 using EstimoteSdk;
-using Java.Interop;
 
 namespace Estimotes.Droid
 {
@@ -26,6 +25,7 @@ namespace Estimotes.Droid
         FindAllBeacons _findAllBeacons;
         QuickAction _quickAction;
         Beacon _selectedBeacon;
+        IMenuItem _refreshItem;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -92,8 +92,7 @@ namespace Estimotes.Droid
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.scan_menu, menu);
-            var refreshItem = menu.FindItem(Resource.Id.refresh);
-            //            refreshItem.SetActionView(Resource.Layout.actionbar_indeterminate_progress);
+            _refreshItem = menu.FindItem(Resource.Id.refresh);
             return true;
         }
 
@@ -104,21 +103,18 @@ namespace Estimotes.Droid
                 Finish();
                 return true;
             }
+            if (item.ItemId == Resource.Id.refresh)
+            {
+                LookForBeacons();
+                return true;
+            }
             return base.OnOptionsItemSelected(item);
         }
 
         protected override void OnStart()
         {
             base.OnStart();
-            if (!_findAllBeacons.IsBluetoothEnabled)
-            {
-                var enableBtIntent = new Intent(BluetoothAdapter.ActionRequestEnable);
-                StartActivityForResult(enableBtIntent, EstimoteValues.REQUEST_ENABLE_BLUETOOTH);
-            }
-            else
-            {
-                _findAllBeacons.FindBeacons();
-            }
+            LookForBeacons();
         }
 
         protected override void OnPause()
@@ -126,12 +122,7 @@ namespace Estimotes.Droid
             _selectedBeacon = null;
             base.OnPause();
         }
-        void NewBeaconsFound(object sender, BeaconsFoundEventArgs e)
-        {
-            _adapter.Update(e.Beacons);
-            ActionBar.Subtitle = string.Format("Found {0} beacons.", _adapter.Count);
-            _findAllBeacons.Stop();
-        }
+
 
         protected override void OnStop()
         {
@@ -154,17 +145,41 @@ namespace Estimotes.Droid
                 if (resultCode == Result.Ok)
                 {
                     ActionBar.Subtitle = "Scanning...";
-                    _adapter.Update(new List<Beacon>(0));
-                    _findAllBeacons.FindBeacons();
+                    _adapter.Update(new Beacon[0]);
+                    LookForBeacons();
                 }
                 else
                 {
-                    Toast.MakeText(this, "Bluetooth not enabled", ToastLength.Long).Show();
-                    ActionBar.Subtitle = "Bluetooth not enabled";
+                    Toast.MakeText(this, "Bluetooth not enabled.", ToastLength.Long).Show();
+                    ActionBar.Subtitle = "Bluetooth not enabled.";
                 }
             }
 
             base.OnActivityResult(requestCode, resultCode, data);
         }
+
+        void LookForBeacons()
+        {
+            if (!_findAllBeacons.IsBluetoothEnabled)
+            {
+                var enableBtIntent = new Intent(BluetoothAdapter.ActionRequestEnable);
+                StartActivityForResult(enableBtIntent, EstimoteValues.REQUEST_ENABLE_BLUETOOTH);
+            }
+            else
+            {
+                _refreshItem.SetActionView(Resource.Layout.actionbar_indeterminate_progress);
+                _findAllBeacons.FindBeacons();
+            }
+        }
+
+        void NewBeaconsFound(object sender, BeaconsFoundEventArgs e)
+        {
+            _adapter.Update(e.Beacons);
+            ActionBar.Subtitle = string.Format("Found {0} beacons.", _adapter.Count);
+            _findAllBeacons.Stop();
+
+            // TODO - change back to the refresh icon.
+        }
+
     }
 }

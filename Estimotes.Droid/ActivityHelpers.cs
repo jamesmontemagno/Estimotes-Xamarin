@@ -1,14 +1,15 @@
 ﻿using System;
+
 using Android.App;
 using Android.Content;
 using Android.Widget;
+
 using EstimoteSdk;
+
 using JavaInteger = Java.Lang.Integer;
 
 namespace Estimotes.Droid
 {
-
-
     public static class ActivityHelpers
     {
         static readonly string EXTRAS_BEACON = "extrasBeacon";
@@ -24,7 +25,8 @@ namespace Estimotes.Droid
             }
             return beacon;
         }
-        public static void StartActivityForBeacon<TActivity>(this Activity activity,Beacon beacon) where TActivity:Activity
+
+        public static void StartActivityForBeacon<TActivity>(this Activity activity, Beacon beacon) where TActivity : Activity
         {
             var type = typeof(TActivity);
             var intent = new Intent(activity, type);
@@ -32,12 +34,12 @@ namespace Estimotes.Droid
             activity.StartActivity(intent);
         }
 
-
         public static Region CreateRegion(this Beacon beacon)
         {
             var region = new Region("region_id", beacon.ProximityUUID, new JavaInteger(beacon.Major), new JavaInteger(beacon.Minor));
             return region;
         }
+
         public static Tuple<Beacon, Region> GetBeaconAndRegion(this Activity activity)
         {
             var beacon = GetBeacon(activity);
@@ -47,4 +49,3 @@ namespace Estimotes.Droid
         }
     }
 }
-

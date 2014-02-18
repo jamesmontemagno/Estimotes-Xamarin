@@ -120,6 +120,7 @@
     <AndroidResource Include="Resources\drawable\arrow_down.png" />
     <AndroidResource Include="Resources\drawable\arrow_up.png" />
     <AndroidResource Include="Resources\drawable\popup.9.png" />
+    <AndroidResource Include="Resources\drawable\ic_refresh.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup />
