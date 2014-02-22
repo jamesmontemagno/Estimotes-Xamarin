@@ -113,3 +113,5 @@ UpgradeLog*.XML
 
 /Estimotes.Binding.Droid/Jars/estimote-sdk-preview.jar
 /Estimotes.Binding.Droid/Jars/guava-15.0.jar
+
+/component/xamarin-component/
