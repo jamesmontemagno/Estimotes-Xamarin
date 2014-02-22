@@ -64,7 +64,7 @@ namespace Estimotes.Droid
             BeaconManager.Connect(this);
         }
 
-        public void Stop()
+        public override void Stop()
         {
             if (_isSearching)
             {   

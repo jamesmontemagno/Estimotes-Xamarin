@@ -16,6 +16,7 @@ namespace Estimotes.Droid
     [Activity(Label = "@string/app_name", MainLauncher = true)]
     public class MainActivity : Activity
     {
+        const int REQUEST_ENABLE_BLUETOOTH = 123321;
         const int QUICKACTION_DISTANCEDEMO = 1;
         const int QUICKACTION_NOTIFYDEMO = 2;
 
@@ -130,7 +131,7 @@ namespace Estimotes.Droid
             {
                 _findAllBeacons.Stop();
             }
-            catch (RemoteException e)
+            catch (RemoteException)
             {
                 Log.Debug(Tag, "Error while stopping ranging");
             }
@@ -140,7 +141,7 @@ namespace Estimotes.Droid
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
-            if (requestCode == EstimoteValues.REQUEST_ENABLE_BLUETOOTH)
+            if (requestCode == REQUEST_ENABLE_BLUETOOTH)
             {
                 if (resultCode == Result.Ok)
                 {
@@ -163,7 +164,7 @@ namespace Estimotes.Droid
             if (!_findAllBeacons.IsBluetoothEnabled)
             {
                 var enableBtIntent = new Intent(BluetoothAdapter.ActionRequestEnable);
-                StartActivityForResult(enableBtIntent, EstimoteValues.REQUEST_ENABLE_BLUETOOTH);
+                StartActivityForResult(enableBtIntent, REQUEST_ENABLE_BLUETOOTH);
             }
             else
             {
