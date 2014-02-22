@@ -44,10 +44,11 @@ namespace Estimotes.Droid
             BeaconManager.Connect(this);
         }
 
-        public void Stop()
+        public override void Stop()
         {
             BeaconManager.StopRanging(ALL_ESTIMOTE_BEACONS_REGION);
-            BeaconManager.Disconnect();
+            base.Stop();
         }
+
     }
 }

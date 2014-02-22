@@ -64,13 +64,13 @@ namespace Estimotes.Droid
             BeaconManager.Connect(this);
         }
 
-        public void Stop()
+        public override void Stop()
         {
             if (_isSearching)
             {   
                 BeaconManager.StopRanging(_region);
                 base.Stop();
-                _region = null;
+                 _region = null;
                 _beacon = null;
                 _isSearching = false;
             }

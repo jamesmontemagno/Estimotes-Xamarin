@@ -130,7 +130,7 @@ namespace Estimotes.Droid
             {
                 _findAllBeacons.Stop();
             }
-            catch (RemoteException e)
+            catch (RemoteException)
             {
                 Log.Debug(Tag, "Error while stopping ranging");
             }
