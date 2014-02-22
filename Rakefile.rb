@@ -4,7 +4,7 @@ require 'rubygems'
 @src_dir = '/Users/tom/work/xamarin/code/Estimotes-Xamarin/src'
 @component_dir = '/Users/tom/work/xamarin/code/Estimotes-Xamarin/component'
 
-task :default => [:clean, :build_binding]
+task :default => [:clean, :update_jars, :build_binding]
 
 desc "Removes build artifacts"
 task :clean do
