@@ -25,8 +25,8 @@ task :default => "xamarin-component/xamarin-component.exe" do
 		--getting-started="GettingStarted.md" \
 		--icon="icons/estimotesdk_128x128.png" \
 		--icon="icons/estimotesdk_512x512.png" \
-		--library="android":"bin/EstimoteBinding.dll" \
-		--sample="EstimoteSDK. Sample project demonstrating the Estimote SDK in Xamarin.Android":"samples/Estimotes.sln"
+		--library="android":"bin/EstimotesBinding.dll" \
+		--sample="EstimoteSDK. Sample project demonstrating the Estimote SDK in Xamarin.Android":"samples/EstimotesSample.sln"
 		END
 	puts "* Creating #{COMPONENT}..."
 	puts line.strip.gsub "\t\t", "\\\n    "
