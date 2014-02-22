@@ -11,7 +11,6 @@ namespace Estimotes.Droid
     [Activity(Label = "NotifyDemoActivity")]			
     public class NotifyDemoActivity : Activity, BeaconManager.IServiceReadyCallback
     {
-        static readonly string Tag = typeof(NotifyDemoActivity).FullName ;
         static readonly int NOTIFICATION_ID = 123321;
 
         BeaconManager _beaconManager;
