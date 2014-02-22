@@ -1,19 +1,10 @@
-You may want to redescribe your component here, but the purpose of this
-document is to guide the user through creating their first app using
-your component.
+This component binds the Estimote SDK for Android so that it may be used in Xamarin.Android projects.
 
-```csharp
-using MyComponentNameSpace;
-...
-
-public override void ViewDidLoad ()
-{
-	// Be sure to include code samples for all supported platforms
-}
-```
 
 ## Other Resources
 
-* [Component Documentation](http://google.com)
-* [Support Forums](http://google.com)
-* [Source Code Repository](http://google.com)
+* [Estimote](http://estimote.com/)
+* [Estimote Android SDK](https://github.com/Estimote/Android-SDK)
+* [Estimote Community Forums](http://community.estimote.com/hc/en-us)
+* [Xamarin.Android Forum](http://forums.xamarin.com/categories/android)
+* [Xamarin.Android binding project on GitHub](https://github.com/topgenorth/Estimotes-Xamarin)
