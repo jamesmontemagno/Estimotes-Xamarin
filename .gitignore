@@ -117,3 +117,6 @@ UpgradeLog*.XML
 /component/xamarin-component/
 
 /Android-SDK-master/
+
+/component/samples/Estimotes.Droid/Components/
+/component/samples/Components/
