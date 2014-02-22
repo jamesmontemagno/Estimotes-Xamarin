@@ -3,6 +3,7 @@
 	<attr path="/api/package[@name='com.estimote.sdk.connection']" name="managedName">EstimoteSdk.Connection</attr>
 	<attr path="/api/package[@name='com.estimote.sdk.service']" name="managedName">EstimoteSdk.Service</attr>
 	<attr path="/api/package[@name='com.estimote.sdk.utils']" name="managedName">EstimoteSdk.Utility</attr>
+	<attr path="/api/package[@name='com.estimote.sdk.internal']" name="managedName">EstimoteSdk.Internal</attr>
 
 	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='Utils']/method[@name='computeAccuracy']/parameter[@name='p0']" name="name">beacon</attr>
 	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='Utils']/method[@name='computeProximity']/parameter[@name='p0']" name="name">beacon</attr>
