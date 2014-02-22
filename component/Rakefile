@@ -3,7 +3,7 @@ require "rake/clean"
 CLEAN.include "*.xam"
 CLEAN.include "xamarin-component"
 
-COMPONENT = "awesome-1.0.xam"
+COMPONENT = "estimotesdk-1.0"
 
 file "xamarin-component/xamarin-component.exe" do
 	puts "* Downloading xamarin-component..."
@@ -15,20 +15,18 @@ end
 
 task :default => "xamarin-component/xamarin-component.exe" do
 	line = <<-END
-	mono xamarin-component/xamarin-component.exe create-manually #{COMPONENT} \
-		--name="My Awesome Component" \
-		--summary="Add a huge amount of awesomeness to your Xamarin apps." \
-		--publisher="Awesome Corp, Inc." \
-		--website="http://awesomecorp.com/component" \
+	mono xamarin-component/xamarin-component.exe create-manually #{COMPONENT}.xam \
+		--name="EstimoteSDK" \
+		--summary="Estimote SDK for Xamarin.Android. A binding for the Estimote SDK for Android." \
+		--publisher="Tom Opgenorth" \
+		--website="http://www.estimote.com" \
 		--details="Details.md" \
 		--license="License.md" \
 		--getting-started="GettingStarted.md" \
-		--icon="icons/awesome_128x128.png" \
-		--icon="icons/awesome_512x512.png" \
-		--library="ios":"bin/Awesome.iOS.dll" \
-		--library="android":"bin/Awesome.Android.dll" \
-		--sample="iOS Sample. Demonstrates Awesomeness on iOS.":"samples/Awesome.iOS.sln" \
-		--sample="Android Sample. Demonstrates Awesomeness on Android":"samples/Awesome.Android.sln"
+		--icon="icons/estimotesdk_128x128.png" \
+		--icon="icons/estimotesdk_512x512.png" \
+		--library="android":"bin/EstimoteBinding.dll" \
+		--sample="EstimoteSDK. Sample project demonstrating the Estimote SDK in Xamarin.Android":"samples/Estimotes.sln"
 		END
 	puts "* Creating #{COMPONENT}..."
 	puts line.strip.gsub "\t\t", "\\\n    "
