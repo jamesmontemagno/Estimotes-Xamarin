@@ -10,6 +10,7 @@ using Android.Views;
 using Android.Widget;
 
 using EstimoteSdk;
+using EstimoteSdk.Utility;
 
 namespace Estimotes.Droid
 {
@@ -47,7 +48,7 @@ namespace Estimotes.Droid
             _quickAction = new QuickAction(this, QuickActionLayout.Horizontal);
             var builder = _quickAction.GetBuilder();
 
-            builder.SetItemId(QUICKACTION_NOTIFYDEMO)
+            builder.SetItemId(QUICKACTION_DISTANCEDEMO)
                 .SetTitle("Distance Demo")
                 .SetIcon(Android.Resource.Drawable.StatSysDataBluetooth)
                 .AddToParent();
@@ -168,7 +169,10 @@ namespace Estimotes.Droid
             }
             else
             {
-                _refreshItem.SetActionView(Resource.Layout.actionbar_indeterminate_progress);
+                if (_refreshItem != null)
+                {
+                    _refreshItem.SetActionView(Resource.Layout.actionbar_indeterminate_progress);
+                }
                 _findAllBeacons.FindBeacons();
             }
         }
