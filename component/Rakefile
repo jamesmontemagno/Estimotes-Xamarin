@@ -14,10 +14,14 @@ file "xamarin-component/xamarin-component.exe" do
 end
 
 task :default => "xamarin-component/xamarin-component.exe" do
+
+	formatted_date = Date.today.strftime("%Y%m%d")
+	package_name = COMPONENT + "." + formatted_date
+
 	line = <<-END
-	mono xamarin-component/xamarin-component.exe create-manually #{COMPONENT}.xam \
+	mono xamarin-component/xamarin-component.exe create-manually #{package_name}.xam \
 		--name="EstimoteSDK" \
-		--summary="Estimote SDK for Xamarin.Android. A binding for the Estimote SDK for Android." \
+		--summary="Estimote SDK for Xamarin.Android. A binding for the Estimote SDK for Android. (Preview)" \
 		--publisher="Tom Opgenorth" \
 		--website="http://www.estimote.com" \
 		--details="Details.md" \
@@ -28,8 +32,8 @@ task :default => "xamarin-component/xamarin-component.exe" do
 		--library="android":"bin/EstimotesBinding.dll" \
 		--sample="EstimoteSDK. Sample project demonstrating the Estimote SDK in Xamarin.Android":"samples/EstimotesSample.sln"
 		END
-	puts "* Creating #{COMPONENT}..."
+	puts "* Creating #{package_name}..."
 	puts line.strip.gsub "\t\t", "\\\n    "
 	sh line, :verbose => false
-	puts "* Created #{COMPONENT}"
+	puts "* Created #{package_name}"
 end
