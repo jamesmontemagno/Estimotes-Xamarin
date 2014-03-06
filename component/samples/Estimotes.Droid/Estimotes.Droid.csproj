@@ -48,7 +48,7 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="EstimotesBinding">
-      <HintPath>..\Components\estimotesdk-1.0\lib\android\EstimotesBinding.dll</HintPath>
+      <HintPath>..\..\..\src\Estimotes.Droid\bin\Release\EstimotesBinding.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -130,11 +130,5 @@
   <ItemGroup>
     <Folder Include="QuickAction\" />
     <Folder Include="Resources\anim\" />
-  </ItemGroup>
-  <ItemGroup>
-    <XamarinComponentReference Include="estimotesdk">
-      <Version>1.0</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
   </ItemGroup>
 </Project>
