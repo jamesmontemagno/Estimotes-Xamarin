@@ -3,7 +3,7 @@ require "rake/clean"
 CLEAN.include "*.xam"
 CLEAN.include "xamarin-component"
 
-COMPONENT = "estimotesdk-1.0"
+COMPONENT = "estimotesdk-1.0.4.2”
 
 file "xamarin-component/xamarin-component.exe" do
 	puts "* Downloading xamarin-component..."
