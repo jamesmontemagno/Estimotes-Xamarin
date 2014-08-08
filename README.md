@@ -15,7 +15,7 @@ Installation
 
 The binding is [available via NuGet](https://www.nuget.org/packages/Estimotes-Xamarin/) :
 
-    PM> Install-Package Xamarin
+    PM> Install-Package Estimotes-Xamarin
 
 
 What About iOS?
