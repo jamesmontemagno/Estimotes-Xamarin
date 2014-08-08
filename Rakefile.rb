@@ -2,9 +2,8 @@ require 'fileutils'
 require 'rubygems'
 
 @src_dir = '/Users/tom/work/xamarin/code/Estimotes-Xamarin/src'
-@component_dir = '/Users/tom/work/xamarin/code/Estimotes-Xamarin/component'
 
-task :default => [:clean, :build_binding]
+task :default => [:compile_binding]
 
 desc "Removes build artifacts"
 task :clean do
@@ -14,7 +13,6 @@ task :clean do
       "#{@src_dir}/Estimotes.Droid/obj",
       "#{@src_dir}/Estimotes.Binding.Droid/bin",
       "#{@src_dir}/Estimotes.Binding.Droid/obj",
-      "#{@component_dir}/bin/EstimotesBinding.dll"
   ]
 
   directories_to_delete.each { |x|
@@ -23,15 +21,16 @@ task :clean do
 end
 
 desc "Compiles the project."
-task :build_binding do 
-  `xbuild #{@src_dir}/Estimotes.Binding.Droid/Estimotes.Droid.Binding.csproj /p:Configuration=Release`
-  cp "#{@src_dir}/Estimotes.Binding.Droid/bin/Release/EstimotesBinding.dll", "#{@component_dir}/bin/EstimotesBinding.dll"
+task :compile_binding => [:clean] do
+  `xbuild #{@src_dir}/Estimotes.Binding.Droid/Xamarin.Estimotes.Android.csproj /p:Configuration=Release`
 end
 
+desc "Will download the latest JAR from Github."
 task :update_jars do
   sh "curl -L https://github.com/Estimote/Android-SDK/archive/master.zip > Estimote_Android-SDK.zip"
   sh "unzip -o -q Estimote_Android-SDK.zip"
   rm_rf "Estimote_Android-SDK.zip"
   rm_rf "#{@src_dir}/Estimotes.Binding.Droid/Jars/estimote-sdk-preview.jar"
   cp "Android-SDK-master/EstimoteSDK/estimote-sdk-preview.jar", "#{@src_dir}/Estimotes.Binding.Droid/Jars/estimote-sdk-preview.jar"
-end 
+end
+
