@@ -3,7 +3,7 @@ require "rake/clean"
 CLEAN.include "*.xam"
 CLEAN.include "xamarin-component"
 
-COMPONENT = "estimotesdk-1.0.4.2”
+COMPONENT = "estimotesdk-1.0.20140808"
 
 file "xamarin-component/xamarin-component.exe" do
 	puts "* Downloading xamarin-component..."
@@ -15,11 +15,10 @@ end
 
 task :default => "xamarin-component/xamarin-component.exe" do
 
-	formatted_date = Date.today.strftime("%Y%m%d")
-	package_name = COMPONENT + "." + formatted_date
+
 
 	line = <<-END
-	mono xamarin-component/xamarin-component.exe create-manually #{package_name}.xam \
+	mono xamarin-component/xamarin-component.exe create-manually #{COMPONENT}.xam \
 		--name="EstimoteSDK" \
 		--summary="Estimote SDK for Xamarin.Android. A binding for the Estimote SDK for Android. (Preview)" \
 		--publisher="Tom Opgenorth" \
@@ -32,8 +31,8 @@ task :default => "xamarin-component/xamarin-component.exe" do
 		--library="android":"bin/EstimotesBinding.dll" \
 		--sample="EstimoteSDK. Sample project demonstrating the Estimote SDK in Xamarin.Android":"samples/EstimotesSample.sln"
 		END
-	puts "* Creating #{package_name}..."
+	puts "* Creating #{COMPONENT}..."
 	puts line.strip.gsub "\t\t", "\\\n    "
 	sh line, :verbose => false
-	puts "* Created #{package_name}"
+	puts "* Created #{COMPONENT}"
 end
