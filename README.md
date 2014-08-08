@@ -7,7 +7,7 @@ Many thanks to James Montemagno for updating this to 1.0.4.2 of Estimotes.
 
 There are two projects:
 
-* `Estimotes.Binding.Droid` - this is the Java Binding library.
+* `Estimotes.Binding.Droid` - this is the Java Binding library. You can rebuild the binding at the command line using `rake`. 
 * `Estimotes.Droid` - this is a sample project showing how to use the Estimotes SDK for Android in Xamarin.Android project. 
 
 Installation
@@ -15,8 +15,7 @@ Installation
 
 The binding is [available via NuGet](https://www.nuget.org/packages/Estimotes-Xamarin/) :
 
-    PM> Install-Pacakage Xamarin
-
+    PM> Install-Package Xamarin
 
 
 What About iOS?
