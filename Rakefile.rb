@@ -1,7 +1,7 @@
 require 'fileutils'
 require 'rubygems'
 
-@src_dir = '/Users/tom/work/xamarin/code/Estimotes-Xamarin/src'
+@src_dir = '.'
 
 task :default => [:compile_binding]
 
@@ -27,10 +27,18 @@ end
 
 desc "Will download the latest JAR from Github."
 task :update_jars do
+
+  rm_rf "./Android-SDK-master"
+
   sh "curl -L https://github.com/Estimote/Android-SDK/archive/master.zip > Estimote_Android-SDK.zip"
   sh "unzip -o -q Estimote_Android-SDK.zip"
+
+
+  destination_jar = "#{@src_dir}/Estimotes.Binding.Droid/Jars/estimote-sdk-preview.jar"
+  rm_rf destination_jar if File.exist?(destination_jar)
+
+  FileUtils.copy_file("./Android-SDK-master/EstimoteSDK/estimote-sdk-preview.jar", destination_jar)
+  # cp "./Android-SDK-master/EstimoteSDK/estimote-sdk-preview.jar", destination_jar
   rm_rf "Estimote_Android-SDK.zip"
-  rm_rf "#{@src_dir}/Estimotes.Binding.Droid/Jars/estimote-sdk-preview.jar"
-  cp "Android-SDK-master/EstimoteSDK/estimote-sdk-preview.jar", "#{@src_dir}/Estimotes.Binding.Droid/Jars/estimote-sdk-preview.jar"
 end
 
