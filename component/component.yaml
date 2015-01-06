@@ -1,7 +1,7 @@
 %YAML 1.2
 ---
 name: EstimoteSDK
-id: estimotesdk-android
+id: estimotesdk
 publisher: "Tom Opgenorth"
 license: License.md
 icons:
