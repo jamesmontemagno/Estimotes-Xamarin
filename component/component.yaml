@@ -1,0 +1,26 @@
+%YAML 1.2
+---
+name: EstimoteSDK
+id: estimotesdk-android
+publisher: "Tom Opgenorth"
+license: License.md
+icons:
+  - icons/estimotesdk_128x128.png
+  - icons/estimotesdk_512x512.png
+publisher-url: https://github.com/topgenorth/Estimotes-Xamarin
+summary: "Estimote SDK for Xamarin.Android. A binding for the Estimote SDK for Android."
+details: Details.md
+getting-started: GettingStarted.md
+version: "1.0.20141223"
+is-shell: true
+packages:
+  android:
+   - Estimotes-Xamarin, Version=1.0.20141223
+src-url: https://github.com/topgenorth/Estimotes-Xamarin
+samples:
+  - name: "EstimoteSDK"
+    path: ../samples/Estimotes.Droid/Estimotes-Example.sln
+    configuration: "Release"
+    no_build: true
+build:
+    - ./src/Estimotes.Binding.Droid/Estimotes-Binding.sln
