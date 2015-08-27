@@ -2,17 +2,20 @@
 
 ## Overview ##
 
-The Estimote SDK for Android is a library that allows interaction with Estimote beacons. The SDK system requirements are Android 4.3 or above and Bluetooth Low Energy.
-
-The Android SDK mimics the [Estimote SDK for iOS](https://github.com/Estimote/iOS-SDK). All naming conventions come from the iBeacon library for iOS and the Estimote iOS library.
+The Estimote SDK for Android is a library that allows interaction with [Estimote beacons & stickers](http://estimote.com/#jump-to-products). The SDK system works on Android 4.3 or above and requires device with Bluetooth Low Energy (SDK's min Android SDK version is 9).
 
 It allows for:
 - beacon ranging (scans beacons and optionally filters them by their properties)
 - beacon monitoring (monitors regions for those devices that have entered/exited a region)
+- nearables (aka stickers) discovery (see [quickstart](#quick-start-for-nearables-discovery))
+- [Eddystone](https://developers.google.com/beacons) scanning (see [quickstart](#quick-start-for-eddystone))
 - beacon characteristic reading and writing (proximity UUID, major & minor values, broadcasting power, advertising interval), see [BeaconConnection] (http://estimote.github.io/Android-SDK/JavaDocs/com/estimote/sdk/connection/BeaconConnection.html) class and [demos](https://github.com/Estimote/Android-SDK/tree/master/Demos) in the SDK
 
-Docs: 
- - [Current JavaDoc documentation](http://estimote.github.io/Android-SDK/JavaDocs/)
+Learn more:
+ - [Comprehensive JavaDoc documentation](http://estimote.github.io/Android-SDK/JavaDocs/).
+ - Play with [SDK Examples](https://github.com/Estimote/Android-SDK/tree/master/Demos) (includes scanning beacons, nearables, Eddystone beacons, connecting to Estimote beacons).
+ - Download [Estimote app](https://play.google.com/store/apps/details?id=com.estimote.apps.main) from Play Store to see what SDK is capable of.
+ - Check our [Estimote Forums](https://forums.estimote.com/c/android-sdk) where you can post your questions and get answers.
  - [Estimote Community Portal](http://community.estimote.com/hc/en-us)
 
 **What is ranging?**
@@ -43,27 +46,46 @@ Monitoring is designed to perform periodic scans in the background. By default i
 
 ## Installation ##
 
-1. Copy [estimote-sdk-preview.jar](https://github.com/Estimote/Android-SDK/blob/master/EstimoteSDK/estimote-sdk-preview.jar) to your `libs` directory.
-2. Add following permissions and service declaration to your `AndroidManifest.xml`:
+*Note*: SDK version 0.5 switched from jar distribution to [aar archive](http://tools.android.com/tech-docs/new-build-system/aar-format). There is no longer need to change your `AndroidManifest.xml` as it is being done automatically.
 
-```xml
-<uses-permission android:name="android.permission.BLUETOOTH"/>
-<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-```
+*Eclipse users:* Mark Murphy [on his blog explained](https://commonsware.com/blog/2014/07/03/consuming-aars-eclipse.html) how to use `aar` format in Eclipse.
 
-```xml
-<service android:name="com.estimote.sdk.service.BeaconService"
-         android:exported="false"/>
+*Note about AAR Manifest Merger*: SDK's `AndroidManifest.xml` will be automatically merged into your app. Right now it declared min SDK level 18. You can override this declaration as [described here](http://tools.android.com/tech-docs/new-build-system/user-guide/manifest-merger#TOC-tools:overrideLibrary-marker).
+
+1. Create `libs` directory inside your project and copy there [estimote-sdk.aar](https://github.com/Estimote/Android-SDK/blob/master/EstimoteSDK/estimote-sdk.aar).
+2. In your `build.gradle` add `flatDir` entry to your repositories
+
+  ```groovy
+  repositories {
+    mavenCentral()
+      flatDir {
+        dirs 'libs'
+      }
+  }
 ```
-(optional) You can enable debug logging of the Estimote SDK by calling `com.estimote.sdk.utils.L.enableDebugLogging(true)`.
+3. Add dependency to Estimote SDK. All needed permissions (`BLUETOOTH`, `BLUETOOTH_ADMIN` and `INTERNET`) and services will be merged from SDK's `AndroidManifest.xml` to your application's `AndroidManifest.xml`.
+
+  ```groovy
+  dependencies {
+    compile(name:'estimote-sdk', ext:'aar')
+  }
+```
+4. Initialize Estimote SDK in your Application class if you are using [Estimote Cloud](http://cloud.estimote.com).
+
+  ```java
+  //  App ID & App Token can be taken from App section of Estimote Cloud.
+  EstimoteSDK.initialize(applicationContext, appId, appToken);
+  // Optional, debug logging.
+  EstimoteSDK.enableDebugLogging(true);
+  ```
 
 ## Usage and demos ##
 
-Demos are located in [Demos](https://github.com/Estimote/Android-SDK/tree/master/Demos) directory. You can easily build it with [Gradle](http://www.gradle.org/) by typing `gradlew installDebug` (or `gradlew.bat installDebug` on Windows) in terminal when your device is connected to computer.
+SDK Demos are located in [Demos](https://github.com/Estimote/Android-SDK/tree/master/Demos) directory. You can easily build it with [Gradle](http://www.gradle.org/) by typing `gradlew installDebug` (or `gradlew.bat installDebug` on Windows) in terminal when your device is connected to computer. If you use [Android Studio](http://developer.android.com/tools/studio/index.html) you can just simply open `build.gradle`.
 
-Demos include samples for ranging beacons, monitoring beacons, calculating distance between beacon and the device and also changing minor value of the beacon.
+Demos include samples for ranging beacons, monitoring beacons, nearable discovery, calculating distance between beacon and the device and also changing minor value of the beacon.
 
-Quick start with ranging:
+## Quick start for beacon ranging ##
 
 ```java
   private static final String ESTIMOTE_PROXIMITY_UUID = "B9407F30-F5F8-466E-AFF9-25556B57FE6D";
@@ -100,82 +122,83 @@ Quick start with ranging:
   beaconManager.disconnect();
 ```
 
+## Quick start for nearables discovery ##
+
+```java
+  private BeaconManager beaconManager = new BeaconManager(context);
+  private String scanId;
+
+  // Should be invoked in #onCreate.
+  beaconManager.setNearableListener(new BeaconManager.NearableListener() {
+    @Override public void onNearablesDiscovered(List<Nearable> nearables) {
+      Log.d(TAG, "Discovered nearables: " + nearables);
+    }
+  });
+
+  // Should be invoked in #onStart.
+  beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
+    @Override public void onServiceReady() {
+      scanId = beaconManager.startNearableDiscovery();
+    }
+  });
+
+  // Should be invoked in #onStop.
+  beaconManager.stopNearableDiscovery(scanId);
+
+  // When no longer needed. Should be invoked in #onDestroy.
+  beaconManager.disconnect();
+```
+
+## Quick start for Eddystone
+
+[Eddystone](https://developers.google.com/beacons) is an open protocol BLE protocol from Google. Estimote Beacons can broadcast the Eddystone packet.
+
+With Estimote SDK you can:
+ - find nearby Eddystone beacons (`BeaconManager#startEddystoneScanning`)
+ - configure Eddystone ralated properties:
+   - URL property of `Eddystone-URL` (see `BeaconConnection#eddystoneUrl`)
+   - namespace & instance properties of `Eddystone-UID` (see `BeaconConnection#eddystoneNamepsace`, `BeaconConnection#eddystoneInstance`)
+ - configure broadcasting scheme of beacon to `Estimote Default`, `Eddystone-UID` or `Eddystone-URL` (see `BeaconConnection#broadcastingScheme`)
+
+[SDK Examples](https://github.com/Estimote/Android-SDK/tree/master/Demos) contains Eddystone related samples.
+
+Note that you can play with Estimote Beacons broadcasting the Eddystone packet and change their configuration via [Estimote app on Google Play](https://play.google.com/store/apps/details?id=com.estimote.apps.main).
+
+In order to start playing with Eddystone you need to update firmware of your existing Estimote beacons to `3.1.1`. Easiest way is through [Estimote app on Google Play](https://play.google.com/store/apps/details?id=com.estimote.apps.main). Than you can change broadcasting scheme on your beacon to Eddystone-URL or Eddystone-UID.
+
+Following code snippet shows you how you can start discovering nearby Estimote beacons broadcasting Eddystone packet.
+
+```java
+  private BeaconManager beaconManager = new BeaconManager(context);
+  private String scanId;
+
+  // Should be invoked in #onCreate.
+  beaconManager.setEddystoneListener(new BeaconManager.EddystoneListener() {
+    @Override public void onEddystonesFound(List<Eddystone> eddystones) {
+      Log.d(TAG, "Nearby Eddystone beacons: " + eddystones);
+    }
+  });
+
+  // Should be invoked in #onStart.
+  beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
+    @Override public void onServiceReady() {
+      scanId = beaconManager.startEddystoneScanning();
+    }
+  });
+
+  // Should be invoked in #onStop.
+  beaconManager.stopEddystoneScanning(scanId);
+
+  // When no longer needed. Should be invoked in #onDestroy.
+  beaconManager.disconnect();
+```
+
 ## FAQ ##
 
-
-1. Where are JavaDocs for Estimote Android library?
-
-  They are published on [GitHub pages](http://estimote.github.io/Android-SDK/JavaDocs/).
-
-2. Android Bluetooth stack is crashing (“Bluetooth Share has stopped” alert)
-
-  You may observe in logs either of those two:
-   * process com.android.bluetooth crashed with SIGSEGV and backtrace leading to Bluetooth native driver
-   * exception similar to this one:
-A/EstimoteSDK(2413): com.estimote.sdk.service.BeaconService.stopScanning:285 BluetoothAdapter throws unexpected exception
-A/EstimoteSDK(2413): java.lang.NullPointerException
-A/EstimoteSDK(2413): at android.bluetooth.BluetoothAdapter$GattCallbackWrapper.stopLeScan(BluetoothAdapter.java:1596)
-A/EstimoteSDK(2413): at android.bluetooth.BluetoothAdapter.stopLeScan(BluetoothAdapter.java:1540)
-A/EstimoteSDK(2413): at com.estimote.sdk.service.BeaconService.stopScanning(BeaconService.java:283)
-A/EstimoteSDK(2413): at com.estimote.sdk.service.BeaconService.access$700(BeaconService.java:60)
-A/EstimoteSDK(2413): at com.estimote.sdk.service.BeaconService$1$1.run(BeaconService.java:545)
-A/EstimoteSDK(2413): at android.os.Handler.handleCallback(Handler.java:733)
-A/EstimoteSDK(2413): at android.os.Handler.dispatchMessage(Handler.java:95)
-A/EstimoteSDK(2413): at android.os.Looper.loop(Looper.java:136)
-A/EstimoteSDK(2413): at android.os.HandlerThread.run(HandlerThread.java:61)
-
-  Resolution: turn on Airplane Mode on the device for a few seconds. If it does not help, please do try factory reset.
-
-  This happens only when hundreds of Bluetooth Low Energy devices are around (hackathons, dev shops). Bluetooth library has low-level bug which activates only of there many many BLE devices around.
-
-  This will not be seen by end users since they do not operate in the environment where there are many many Bluetooth devices.
-
-  [Issue is already reported to Android](https://code.google.com/p/android/issues/detail?id=67272) and hopefully it will be fixed within next release.
-
-  For more detailed info please see those [two StackOverflow](http://stackoverflow.com/questions/22048721/bluetooth-share-has-stopped-working-when-performing-lescan) [threads](http://stackoverflow.com/questions/22476951/bluetooth-share-has-stopped-alert-when-detecting-ibeacons-on-android).
-  
-  There is a workaround around this bug. Please read the [article](http://developer.radiusnetworks.com/2014/04/02/a-solution-for-android-bluetooth-crashes.html) and check out [Bluetooth crash resolver project on GitHub](https://github.com/RadiusNetworks/bluetooth-crash-resolver).
-
-3. I did not find answer here. Where I can seek for help?
-
-  You have three options:
-   * file an issue on GitHub for [Estimote SDK for Android](https://github.com/Estimote/Android-SDK/issues) if it is highly technical
-   * check our [Community Portal](https://community.estimote.com/hc/en-us) to get answers for most common questions related to our Hardware and Software, you can post questions there
-   * ask a question on [StackOverflow.com](http://stackoverflow.com) with iBeacon, Estimote, Android tags
-
-4. How to run demos from Eclipse?
-
-  Eclipse cannot import Gradle projects out of the box. See [tutorial how to do it](https://github.com/Estimote/Android-SDK/wiki/Running-SDK-demos-from-Eclipse).
+There is [Estimote SDK FAQ on wiki](https://github.com/Estimote/Android-SDK/wiki/FAQ).
+There is also [Estimote SDK for Android forum](https://forums.estimote.com/c/android-sdk) where you can post your questions.
 
 ## Changelog ##
 
-* 0.4.3 (November 12, 2014):
- - Fixes https://github.com/Estimote/Android-SDK/issues/59: compatibilty with Android L
-
-* 0.4.2 (June 24, 2014):
- - Fixes https://github.com/Estimote/Android-SDK/issues/55: it is safe to use library from remote process
-
-* 0.4.1 (March 18, 2014)
- * CAN BREAK BUILD: MonitoringListener returns list of beacons the triggered enter region event (https://github.com/Estimote/Android-SDK/issues/18)
- * Better messaging when BeaconManager cannot start service to scan beacons (https://github.com/Estimote/Android-SDK/issues/25)
- * Fixed bug in SDK when other beacons are around (https://github.com/Estimote/Android-SDK/issues/27)
-* 0.4 (February 17, 2014)
- * Introducing ability to change beacon's UUID, major, minor, broadcasting power, advertising interval (see BeaconConnection class).
- * Dropping Guava dependency.
-* 0.3.1 (February 11, 2014)
- * Fixes bug when simulated beacons were not seen even when using Estimote's proximity UUID.
-* 0.3 (February 11, 2014)
- * Background monitoring is more robust and using AlarmService to invoke scanning.
- * Default values for background monitoring were changed. Scanning is performed for 5 seconds and then service sleeps for 25 seconds. Those values can be changed with BeaconManager#setBackgroundScanPeriod.
- * Beacons reported in RangingListener#onBeaconsDiscovered are sorted by accuracy (estimated distance between device and beacon).
- * Bug fixes.
-* 0.2 (January 7, 2014)
- * *IMPORTANT*: package changes BeaconService is now in `com.estimote.sdk.service service`. You need to update your `AndroidManifest.xml` service definition to `com.estimote.sdk.service.BeaconService`.
- * Support for monitoring regions in BeaconManager.
- * Region class: it is mandatory to provide region id in its constructor. This matches CLRegion/ESTBeaconRegion from iOS.
- * Beacon, Region classes now follow Java bean conventions (that is getXXX for accessing properties).
- * Debug logging is disabled by default. You can enable it via `com.estimote.sdk.utils.L#enableDebugLogging(boolean)`.
-
-* 0.1 (December 9, 2013)
- * Initial version.
+To see what has changed in recent versions of Estimote SDK for Android, see the [CHANGELOG](CHANGELOG.md).
 
