@@ -4,7 +4,7 @@ using Android.App;
 using Android.Content;
 using Android.Widget;
 
-using Estimote;
+using EstimoteSdk;
 
 using JavaInteger = Java.Lang.Integer;
 

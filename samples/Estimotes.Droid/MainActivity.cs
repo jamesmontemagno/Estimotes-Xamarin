@@ -8,7 +8,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 
-using Estimote;
+using EstimoteSdk;
 
 namespace Estimotes.Droid
 {

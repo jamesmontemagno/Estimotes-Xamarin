@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 
 [assembly: AssemblyTitle("Estimotes.Droid")]
-[assembly: AssemblyDescription("An example of using Estimotes with Xamarin.Android.")]
+[assembly: AssemblyDescription("An example of using Estimote with Xamarin.Android.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("")]

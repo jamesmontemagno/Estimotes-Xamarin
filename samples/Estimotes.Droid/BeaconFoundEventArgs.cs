@@ -1,6 +1,6 @@
 using System;
 
-using Estimote;
+using EstimoteSdk;
 
 namespace Estimotes.Droid
 {

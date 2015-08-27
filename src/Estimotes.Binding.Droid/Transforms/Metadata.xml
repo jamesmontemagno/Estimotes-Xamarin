@@ -1,16 +1,16 @@
 ﻿<metadata>
 
 	<!-- Rename java packages to .NET friendly namespaces -->
-    <attr path="/api/package[@name='com.estimote.sdk']" name="managedName">Estimote</attr>
-    <attr path="/api/package[@name='com.estimote.sdk.cloud']" name="managedName">Estimote.Cloud</attr>
-    <attr path="/api/package[@name='com.estimote.sdk.cloud.model']" name="managedName">Estimote.Cloud.Model</attr>
-    <attr path="/api/package[@name='com.estimote.sdk.connection']" name="managedName">Estimote.Connection</attr>
-    <attr path="/api/package[@name='com.estimote.sdk.eddystone']" name="managedName">Estimote.EddystoneSdk</attr>
-	<attr path="/api/package[@name='com.estimote.sdk.service']" name="managedName">Estimote.Service</attr>
-	<attr path="/api/package[@name='com.estimote.sdk.exception']" name="managedName">Estimote.Exception</attr>
+    <attr path="/api/package[@name='com.estimote.sdk']" name="managedName">EstimoteSdk</attr>
+    <attr path="/api/package[@name='com.estimote.sdk.cloud']" name="managedName">EstimoteSdk.Cloud</attr>
+    <attr path="/api/package[@name='com.estimote.sdk.cloud.model']" name="managedName">EstimoteSdk.Cloud.Model</attr>
+    <attr path="/api/package[@name='com.estimote.sdk.connection']" name="managedName">EstimoteSdk.Connection</attr>
+    <attr path="/api/package[@name='com.estimote.sdk.eddystone']" name="managedName">EstimoteSdk.EddystoneSdk</attr>
+	<attr path="/api/package[@name='com.estimote.sdk.service']" name="managedName">EstimoteSdk.Service</attr>
+	<attr path="/api/package[@name='com.estimote.sdk.exception']" name="managedName">EstimoteSdk.Exception</attr>
 
 	<!-- Make casing more .NET on class name -->
-	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='EstimoteSDK']" name="managedName">EstimoteSdk</attr>
+	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='EstimoteSDK']" name="managedName">Estimote</attr>
 
 	<!-- Remove unnecessary and problematic bindings -->
 	<remove-node path="/api/package[contains(@name,'com.estimote.sdk.repackaged')]" />

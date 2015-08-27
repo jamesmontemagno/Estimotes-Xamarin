@@ -5,7 +5,7 @@ using System.Linq;
 using Android.Content;
 using Android.Util;
 
-using Estimote;
+using EstimoteSdk;
 
 namespace Estimotes.Droid
 {

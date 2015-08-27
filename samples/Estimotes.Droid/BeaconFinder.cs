@@ -3,7 +3,7 @@ using System;
 using Android.Content;
 using Android.Util;
 
-using Estimote;
+using EstimoteSdk;
 
 using JavaObject = Java.Lang.Object;
 

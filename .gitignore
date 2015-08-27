@@ -6,6 +6,7 @@ TestResults
 *.sln.docstates
 [Dd]ebug/
 [Rr]elease/
+externals/
 x64/
 *_i.c
 *_p.c
