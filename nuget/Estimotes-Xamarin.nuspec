@@ -2,20 +2,23 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Estimotes-Xamarin</id>
-        <version>1.0.8.7</version>
-        <title>Estimotes for Xamarin.Android</title>
-        <authors>Tom Opgenorth, James Montemagno, Jonathan Dick</authors>
-        <owners>Tom Opgenorth</owners>
-        <licenseUrl>https://raw.githubusercontent.com/jamesmontemagno/Estimotes-Xamarin/master/LICENSE</licenseUrl>
-        <projectUrl>https://raw.githubusercontent.com/jamesmontemagno/Estimotes-Xamarin</projectUrl>
+        <version>1.0.8.70</version>
+        <title>Estimote SDK for Xamarin</title>
+        <authors>Xamarin, Tom Opgenorth, James Montemagno, Jonathan Dick</authors>
+        <owners>Xamarin</owners>
+        <licenseUrl>https://raw.githubusercontent.com/xamarin/plugins/master/LICENSE</licenseUrl>        
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>A Xamarin.Android binding of the Estimote SDK for Android.</description>
+        <description>Estimote SDK for Xamarin.Android to actively scan for Bluetooth Beacons, Nearables, and Eddystones.</description>
         <releaseNotes>Updated to 0.8.7 of the Estimote for Android SDK.</releaseNotes>
         <copyright>Copyright 2014, 2015</copyright>
         <language>en-US</language>
+        <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/Xamarin.Estimote.png</iconUrl>
         <tags>Xamarin Xamarin.Android Estimote</tags>
     </metadata>
     <files>
         <file src="../output/Estimotes.Xamarin.Android.dll" target="lib\MonoAndroid43\Estimotes.Xamarin.Android.dll" />
+
+        <!-- Add something like this when iOS is ready -->
+        <!-- <file src="../output/Estimotes.Xamarin.iOS.dll" target="lib\Xamarin.iOS10\Estimotes.Xamarin.iOS.dll" /> -->
     </files>
 </package>
