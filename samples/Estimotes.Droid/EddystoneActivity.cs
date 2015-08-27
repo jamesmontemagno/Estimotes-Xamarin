@@ -113,6 +113,12 @@ namespace Estimotes.Droid
         {
             scanId = beaconManager.StartEddystoneScanning();
         }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            beaconManager.Disconnect();
+        }
     }
 }
 

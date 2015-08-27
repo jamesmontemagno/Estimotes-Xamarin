@@ -114,6 +114,12 @@ namespace Estimotes.Droid
         {
             scanId = beaconManager.StartNearableDiscovery();
         }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            beaconManager.Disconnect();
+        }
     }
 }
 
