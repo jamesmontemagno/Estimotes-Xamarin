@@ -1,7 +1,7 @@
 using Android.Views;
 using Android.Widget;
 
-using EstimoteSdk;
+using Estimote;
 
 using Java.Lang;
 

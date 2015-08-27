@@ -3,8 +3,7 @@ using System;
 using Android.Content;
 using Android.Util;
 
-using EstimoteSdk;
-using EstimoteSdk.Utility;
+using Estimote;
 
 using JavaObject = Java.Lang.Object;
 
@@ -19,7 +18,7 @@ namespace Estimotes.Droid
         protected BeaconFinder(Context context)
         {
 #if DEBUG
-            L.EnableDebugLogging(true);
+            //L.EnableDebugLogging(true);
 #endif
 
             Context = context;
@@ -34,7 +33,7 @@ namespace Estimotes.Droid
 
         void BeaconManager_Error(object sender, BeaconManager.ErrorEventArgs e)
         {
-            Log.Error(TAG, "Something terrible happened with the BeaconManager, Error code {0}.", e.ErrorCode);
+            Log.Error(TAG, "Something terrible happened with the BeaconManager, Error code {0}.", e.ErrorId);
         }
 
         protected Context Context { get; private set; }

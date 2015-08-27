@@ -7,7 +7,7 @@ using Android.OS;
 using Android.Util;
 using Android.Widget;
 
-using EstimoteSdk;
+using Estimote;
 
 using JavaObject = Java.Lang.Object;
 

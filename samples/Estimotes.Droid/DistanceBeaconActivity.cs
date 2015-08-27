@@ -5,7 +5,7 @@ using Android.OS;
 using Android.Util;
 using Android.Views;
 
-using EstimoteSdk;
+using Estimote;
 
 namespace Estimotes.Droid
 {

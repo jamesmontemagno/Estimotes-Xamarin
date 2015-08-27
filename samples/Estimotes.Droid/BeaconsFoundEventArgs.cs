@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using EstimoteSdk;
+using Estimote;
 
 namespace Estimotes.Droid
 {

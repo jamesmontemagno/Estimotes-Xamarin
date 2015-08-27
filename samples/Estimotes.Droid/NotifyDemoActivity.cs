@@ -4,7 +4,7 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 
-using EstimoteSdk;
+using Estimote;
 
 using Java.Util.Concurrent;
 
