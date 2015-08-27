@@ -12,8 +12,6 @@
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>
-    </AndroidUseLatestPlatformSdk>
     <AssemblyName>Estimotes.Droid</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
@@ -46,9 +44,6 @@
     <AndroidSupportedAbis>armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Estimotes.Xamarin.Android">
-      <HintPath>lib\Estimotes.Xamarin.Android.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -129,4 +124,10 @@
     <AndroidResource Include="Resources\drawable\ic_refresh.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Estimotes.Binding.Droid\Xamarin.Estimotes.Android.csproj">
+      <Project>{C2098D47-D08C-487C-95D3-5853B678AEB2}</Project>
+      <Name>Xamarin.Estimotes.Android</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
