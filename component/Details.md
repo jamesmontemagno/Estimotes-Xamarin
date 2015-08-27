@@ -1,5 +1,7 @@
 This component binds the Estimote SDK for Android so that it may be used in Xamarin.Android projects.
 
+This is based on Estimote SDK for Android v0.8.7.
+
 The system requirements are Android 4.3 and Bluetooth Low Energy.
 
 The `BeaconManager` class is the primary means of interating with Estimotes. Create an instance of this class, and use the `.Connect` method, passing it `BeaconManager.IServiceReadyCallback` object. When the BeaconManager is up and running, it will notify clients by call `BeaconManager.IServiceReadyCallback.OnServiceReady()`. At this point the client can start ranging or monitoring for the Estimotes.

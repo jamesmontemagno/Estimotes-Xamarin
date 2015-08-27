@@ -1,5 +1,7 @@
 This component binds the Estimote SDK for Android so that it may be used in Xamarin.Android projects.
 
+This is based on Estimote SDK for Android v0.8.7.
+
 The system requirements are Android 4.3 and Bluetooth Low Energy.
 
 ## Quick start for beacon ranging

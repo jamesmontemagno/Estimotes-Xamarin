@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Estimotes-Xamarin</id>
-        <version>1.0.8.70</version>
+        <version>1.1.0.0</version>
         <title>Estimote SDK for Xamarin</title>
         <authors>Xamarin, Tom Opgenorth, James Montemagno, Jonathan Dick</authors>
         <owners>Xamarin</owners>
