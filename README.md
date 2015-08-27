@@ -2,7 +2,7 @@
 
 This is a Java Library binding for the [Estimotes SDK for Android](https://github.com/Estimote/Android-SDK).
 
-Many thanks to James Montemagno for updating this to 0.4.3 of the Android SDK for Estimotes.
+Many thanks to James Montemagno for updating this to 0.8.7 of the Android SDK for Estimotes.
 
 There are three directories of interest:
 
