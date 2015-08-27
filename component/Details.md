@@ -7,11 +7,11 @@ The `BeaconManager` class is the primary means of interating with Estimotes. Cre
 The following code shows an example of how to use the `BeaconManager`.
 
 ```csharp
-
 using EstimoteSdk;
+
 namespace Estimotes.Droid
 {
-    [Activity(Label = "NotifyDemoActivity")]	
+    [Activity(Label = "Notify Demo")]	
     public class NotifyDemoActivity : Activity, BeaconManager.IServiceReadyCallback
     {
         static readonly int NOTIFICATION_ID = 123321;
