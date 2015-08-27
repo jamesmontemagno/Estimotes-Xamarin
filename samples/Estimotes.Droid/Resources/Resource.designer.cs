@@ -184,6 +184,9 @@ namespace Estimotes.Droid
 			// aapt resource value: 0x7f080006
 			public const int status = 2131230726;
 			
+			// aapt resource value: 0x7f08000c
+			public const int stop = 2131230732;
+			
 			// aapt resource value: 0x7f080008
 			public const int tracks = 2131230728;
 			

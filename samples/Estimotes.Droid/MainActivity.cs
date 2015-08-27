@@ -12,7 +12,7 @@ using EstimoteSdk;
 
 namespace Estimotes.Droid
 {
-    [Activity(Label = "@string/app_name", MainLauncher = true)]
+    [Activity(Label="Beacons")]
     public class MainActivity : Activity
     {
         const int REQUEST_ENABLE_BLUETOOTH = 123321;
@@ -103,6 +103,11 @@ namespace Estimotes.Droid
             if (item.ItemId == Resource.Id.refresh)
             {
                 LookForBeacons();
+                return true;
+            }
+            if (item.ItemId == Resource.Id.stop)
+            {
+                _findAllBeacons.Stop();
                 return true;
             }
             return base.OnOptionsItemSelected(item);

@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-name: EstimoteSDK
+name: Estimote SDK for Android
 id: estimotesdk
 publisher: "Xamarin Inc."
 license: License.md
@@ -8,7 +8,7 @@ icons:
   - icons/estimotesdk_128x128.png
   - icons/estimotesdk_512x512.png
 publisher-url: "https://github.com/jamesmontemagno/Estimotes-Xamarin"
-summary: "Estimote SDK for Xamarin.Android. A binding for the Estimote SDK for Android."
+summary: "Estimote SDK for Xamarin.Android to actively scan for Bluetooth Beacons, Nearables, and Eddystones."
 details: Details.md
 getting-started: "GettingStarted.md"
 version: "1.0.8.7"
