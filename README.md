@@ -23,33 +23,33 @@ The other way is to use the Xamarin Component store.
 
 # Building
 
-A Rakefile is provided to assist with some aspects of creating the component.  Run `rake -T` to see a list of options:
+A `cake.build` file is provided and can be called with the following targets:
 
-    $ rake -T
-    rake build_component  # Build the .xam component file
-    rake clean            # Removes build artifacts
-    rake compile_binding  # Compiles the project and updates the appropriate locations with the new .DLL
-    rake compile_sample   # Compiles the sample project
-    rake update_jars      # Will download the latest JAR from Github
+On Mac (first you should install cake via homebrew `brew install cake`):
+```bash
+cake -target=libs      # Builds the bindings library
+cake -target=clean     # Removes all build artifacts, nupkg's and .xam's
+cake -target=nuget     # Builds a .nupkg
+cake -target=component # Builds a .xam component file
+cake -target=samples   # Builds the sample project(s)
+cake -target=expunge   # Cleans out the component cache for this component
+```
+
+On Windows:
+```
+.\build.ps1 -Target "libs"      # Builds the bindings library
+.\build.ps1 -Target "clean"     # Removes all build artifacts, nupkg's and .xam's
+.\build.ps1 -Target "nuget"     # Builds a .nupkg
+.\build.ps1 -Target "component" # Builds a .xam component file
+.\build.ps1 -Target "samples"   # Builds the sample project(s)
+.\build.ps1 -Target "expunge"   # Cleans out the component cache for this component
+
+```
 
 
-When a new version of the Estimote Android SDK is release, the proper order of activity would be:
+When a new version of the Estimote Android SDK is released, you can update the `build.cake` file's version to match the new version available on Maven.  Running `cake t=all` will clean and redownload the newest sdk version.
 
-1. Update the JAR file with `rake update_jars`
-2. Recompile the binding with `rake compile_binding`.
-3. Open the sample project, and run it to make sure that the sample application still works.
-4. Edit `src/Estimotes-Xamarin.nuspec`, and update the version and release notes element.
-4. Create the NuGet package: `nuget pack ./src/Estimotes-Xamarin.nuspec`
-5. Upload the NuGet package to Nuget.Org.
-6. Edit the `component/component.yaml` and update the version and Android package.
-7. Build the component using `rake build_component`.
-8. If necessary, delete old versions of the component from your computer using `sh expunge_component.sh`.
-9. Install this new component using `mono component/xamarin-component/xamarin-component.exe <NAME_OF_XAM>`.
-10. Test out the component by creating a new Xamarin.Android project and adding the component to it.
-11. Open the sample project that is included with the component and make sure that it works.
-12. Submit the component to the Xamarin component store.
 
-**Note:** There is a bash script `expunge_component.sh`, which will delete the component from your local OS X computer.
 
 # What About iOS?
 

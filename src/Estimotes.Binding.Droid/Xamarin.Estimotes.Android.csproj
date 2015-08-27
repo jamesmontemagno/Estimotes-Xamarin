@@ -33,7 +33,7 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <PropertyGroup>
-    <Java7DocPaths>..\Android-SDK-master\EstimoteSDK\estimote-sdk-javadoc</Java7DocPaths>
+    <Java7DocPaths>..\..\externals\javadocs</Java7DocPaths>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -61,6 +61,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
   <ItemGroup>
-    <LibraryProjectZip Include="Jars\estimote-sdk.aar" />
+    <LibraryProjectZip Include="..\..\externals\estimotes.aar" />
   </ItemGroup>
 </Project>
