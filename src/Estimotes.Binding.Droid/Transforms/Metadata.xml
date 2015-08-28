@@ -22,8 +22,10 @@
     <remove-node path="/api/package[@name='com.estimote.sdk.exception']/class[@name='EstimoteServerException']/constructor" />
 
     <!-- We will manually add the JNI code to make this return an int instead of Java.Lang.Integer -->
-    <remove-node path="/api/package[@name='com.estimote.sdk']/class[@name='Region']/method[@name='getMinor' and count(parameter)=0]" />
-    <remove-node path="/api/package[@name='com.estimote.sdk']/class[@name='Region']/method[@name='getMajor' and count(parameter)=0]" />
+    <attr path="/api/package[@name='com.estimote.sdk']/class[@name='Region']/method[@name='getMinor' and count(parameter)=0]" name="managedName">_MinorInternal</attr>
+    <attr path="/api/package[@name='com.estimote.sdk']/class[@name='Region']/method[@name='getMinor' and count(parameter)=0]" name="visibility">protected</attr>
+    <attr path="/api/package[@name='com.estimote.sdk']/class[@name='Region']/method[@name='getMajor' and count(parameter)=0]" name="managedName">_MajorInternal</attr>
+    <attr path="/api/package[@name='com.estimote.sdk']/class[@name='Region']/method[@name='getMajor' and count(parameter)=0]" name="visibility">protected</attr>
 
     <!-- These class names collide with field names, so renaming the classes -->
     <attr path="/api/package[@name='com.estimote.sdk']/class[@name='Nearable.BatteryLevel']" name="managedName">BatteryLevelValue</attr>
