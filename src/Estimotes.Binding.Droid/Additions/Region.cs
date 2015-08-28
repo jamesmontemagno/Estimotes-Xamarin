@@ -5,6 +5,25 @@ namespace EstimoteSdk
 {
     public partial class Region
     {
+
+        public Region(string identifier, string proximityUUID)
+            : this(identifier, proximityUUID, null, null)
+        {
+            
+        }
+
+        public Region(string identifier, string proximityUUID, int major)
+            : this(identifier, proximityUUID, new Java.Lang.Integer(major), null)
+        {
+
+        }
+
+        public Region(string identifier, string proximityUUID, int major, int minor)
+            : this(identifier, proximityUUID, new Java.Lang.Integer(major), new Java.Lang.Integer(minor))
+        {
+
+        }
+
         static IntPtr id_getMajor;
         public virtual unsafe int Major {
             // Metadata.xml XPath method reference: path="/api/package[@name='com.estimote.sdk']/class[@name='Region']/method[@name='getMajor' and count(parameter)=0]"

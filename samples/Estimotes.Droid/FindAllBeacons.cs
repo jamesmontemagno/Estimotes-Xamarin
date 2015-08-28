@@ -11,7 +11,8 @@ namespace Estimotes.Droid
 {
     class FindAllBeacons : BeaconFinder
     {
-        public static readonly Region ALL_ESTIMOTE_BEACONS_REGION = new Region("rid", null, null, null);
+        public static readonly Region ALL_ESTIMOTE_BEACONS_REGION = new Region("rid", "B9407F30-F5F8-466E-AFF9-25556B57FE6D");
+
         static readonly string TAG = typeof(FindAllBeacons).Name;
 
         public EventHandler<BeaconsFoundEventArgs> BeaconsFound = delegate { };
