@@ -25,32 +25,27 @@ The other way is to use the Xamarin Component store.
 
 A `cake.build` file is provided and can be called with the following targets:
 
-On Mac (first you should install cake via homebrew `brew install cake`):
+On Mac:
 ```bash
-cake -target=libs      # Builds the bindings library
-cake -target=clean     # Removes all build artifacts, nupkg's and .xam's
-cake -target=nuget     # Builds a .nupkg
-cake -target=component # Builds a .xam component file
-cake -target=samples   # Builds the sample project(s)
-cake -target=expunge   # Cleans out the component cache for this component
+sh build.sh              # Builds everything
+sh build.sh -t=libs      # Builds the bindings library
+sh build.sh -t=clean     # Removes all build artifacts, nupkg's and .xam's
+sh build.sh -t=nuget     # Builds a .nupkg
+sh build.sh -t=component # Builds a .xam component file
+sh build.sh -t=samples   # Builds the sample project(s)
+sh build.sh -t=expunge   # Cleans out the component cache for this component
 ```
 
 On Windows:
 ```
+.\build.ps1                     # Builds everything
 .\build.ps1 -Target "libs"      # Builds the bindings library
 .\build.ps1 -Target "clean"     # Removes all build artifacts, nupkg's and .xam's
 .\build.ps1 -Target "nuget"     # Builds a .nupkg
 .\build.ps1 -Target "component" # Builds a .xam component file
 .\build.ps1 -Target "samples"   # Builds the sample project(s)
 .\build.ps1 -Target "expunge"   # Cleans out the component cache for this component
-
 ```
-
 
 When a new version of the Estimote Android SDK is released, you can update the `build.cake` file's version to match the new version available on Maven.  Running `cake t=all` will clean and redownload the newest sdk version.
 
-
-
-# What About iOS?
-
-Greg Shackles has a [binding for Xamarin.iOS](https://github.com/gshackles/Estimote-iOS-Xamarin).
