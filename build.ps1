@@ -1,6 +1,6 @@
 Param(
     [string]$Script = "build.cake",
-    [string]$Target = "all",
+    [string]$Target = "Default",
     [ValidateSet("Quiet", "Minimal", "Normal", "Verbose", "Diagnostic")]
     [string]$Verbosity = "Verbose",
     [switch]$Experimental,

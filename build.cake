@@ -5,8 +5,6 @@ var ESTIMOTES_SDK_URL = "http://search.maven.org/remotecontent?filepath=com/esti
 var ESTIMOTES_DOC_URL = "http://search.maven.org/remotecontent?filepath=com/estimote/sdk/" + ESTIMOTES_VERSION + "/sdk-" + ESTIMOTES_VERSION + "-javadoc.jar";
 
 var target = Argument ("target", "Default");
-if (target == "Default")
-	target = "all";
 
 Task ("externals")
 	.WithCriteria (!DirectoryExists ("./externals/javadocs/") && !FileExists ("./externals/estimotes.aar"))
@@ -61,8 +59,6 @@ Task ("component").IsDependentOn ("nuget").Does (() =>
 	MoveFiles ("./component/*.xam", "./output/");
 });
 
-Task ("all").IsDependentOn ("clean").IsDependentOn ("component").Does (() => { });
-
 Task ("clean").Does (() => 
 {
 	if (DirectoryExists ("./externals"))
@@ -78,5 +74,8 @@ Task ("expunge").Does (() => {
 	CleanDirectories ("~/Library/Caches/Xamarin/ComponentInfo/estimotesdk*.*");
 	CleanDirectories ("~/Library/Caches/Xamarin/Components/estimotesdk*.xam");
 });
+
+Task ("Default").IsDependentOn ("clean").IsDependentOn ("component").Does (() => { });
+Task ("all").IsDependentOn ("Default").Does (() => { });
 
 RunTarget (target);
